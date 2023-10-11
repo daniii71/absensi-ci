@@ -24,6 +24,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
+        .karyawan {
+         text-align: center;
+        }
+
+
         .title {
             text-align: center;
             color: #fff;
@@ -74,6 +79,7 @@
 <body>
     <div class="container">
         <h1 class="title">REGISTER</h1>
+        <p class="karyawan">register sebagai karyawan</p>
         <form action="<?php echo base_url(); ?>Auth/aksi_register" method="post">
             <div class="form-group">
                 <input type="text" name="username" id="username" placeholder="Username" />
@@ -85,9 +91,14 @@
             <div class="form-group">
                 <button type="submit">Register</button>
             </div>
-            <p class="message">Login</a></p>
-
-                <button type="submit">ADMIN</button>
+            <p class="signup">
+                <a href="<?php echo base_url('auth'); ?>">login</a>
+            </a>
+        </p>
+            <p class="signup">
+                <a href="<?php echo base_url('auth/register_admin'); ?>">admin</a>
+            </a>
+        </p>
         </form>
     </div>
 </body>

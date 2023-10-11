@@ -10,7 +10,7 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style>
         body {
-            background-image: url('background.jpg'); /* Ganti 'background.jpg' dengan URL gambar latar belakang yang kamu inginkan */
+            background-image: url('background.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -26,22 +26,22 @@
         }
 
         .card.left {
-            order: 1; /* Menempatkan kartu login ke kiri */
+            order: 1;
         }
 
         .card.right {
-            order: 2; /* Menempatkan kartu register ke kanan */
+            order: 2;
         }
 
         .logo {
             max-width: 200px;
             height: auto;
             display: block;
-            margin: 0 auto 40px;
+            margin: 0 auto 20px; /* Mengurangi margin agar lebih pas di perangkat seluler */
         }
 
         .custom-button {
-            font-size: 18px; /* Ubah ukuran font sesuai preferensi */
+            font-size: 18px;
             width: 150px;
         }
 
@@ -54,13 +54,23 @@
         .ddd {
             text-align: center;
         }
+
+        /* Menambahkan gaya khusus untuk perangkat seluler */
+        @media (max-width: 768px) {
+            .card {
+                padding: 10px; /* Mengurangi padding agar lebih pas di perangkat seluler */
+            }
+
+            .custom-button {
+                width: 100%; /* Tombol memenuhi lebar kartu di perangkat seluler */
+            }
+        }
     </style>
 </head>
 
 <body class="body">
     <div class="container">
-
-        <div class="card mt-5 w-50 mx-auto">
+        <div class="card mt-5 mx-auto">
             <h3 class="card-header mx-auto text-fold text-center" style="color: red;"><strong>LOGIN</strong></h3>
             <div class="card-body">
                 <form action="<?php echo base_url(); ?>auth/aksi_login" method="post">
@@ -72,8 +82,7 @@
 
                     <div class="mb-3">
                         <label for="password" class="text-sm" style="color: black;">Password</label>
-                        <input type="password" class="form-control" name="password" id="password"
-                         autocomplete="off">
+                        <input type="password" class="form-control" name="password" id="password" autocomplete="off">
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">
                         <button type="submit" class="btn btn-primary custom-button">Login</button>
@@ -81,8 +90,8 @@
                 </form>
             </div>
             <div class="card-footer text-center">
-            <p>Don't have an account? <a href="<?php echo base_url(); ?>auth/register">Register here</a></p>
-        </div>
+                <p>Don't have an account? <a href="<?php echo base_url(); ?>auth/register">Register here</a></p>
+            </div>
         </div>
     </div>
 </body>

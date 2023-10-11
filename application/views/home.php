@@ -9,6 +9,7 @@
             font-family: Arial, sans-serif;
             background-image: url('');
             background-size: cover;
+            background-color: blue;
             background-position: center;
             text-align: center;
             padding: 100px;
@@ -54,7 +55,7 @@
     </style>
 </head>
 <body>
-    <h1>bacroun text</h1> <!-- Mengganti teks "Welcome Dhani" menjadi "bacroun text" -->
+    <h1>Background Text</h1> <!-- Mengganti teks "bacroun text" menjadi "Background Text" -->
     <div class="button-container">
         <a href="./auth" class="custom-button login">LOGIN</a>
         <a href="./auth/register" class="custom-button register">REGISTER</a>
