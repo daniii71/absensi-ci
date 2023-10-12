@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Absensi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,18 +54,69 @@
 <body>
 <?php $this->load->view('./component/sidebar_karyawan'); ?>
 
-    <div class="absensi-container">
-        <h1>Absensi Karyawan</h1>
-        <button onclick="absen()">Absen</button>
-        <p>Status Absensi:</p>
-        <p class="result" id="statusAbsen"></p>
+<div class="absensi-container" style="width: 80%;">
+    <div class="col-md-9">
+        <h2>Data Absen</h2>
+        <table class="table" style="width: 130%;">
+            <thead class="table-dark">
+                <tr class="text-center">
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Jam Masuk</th>
+                    <th>Jam Pulang</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php $no = 0; foreach($absensi as $row): $no++; ?>
+                <tr class="text-center">
+                    <td><?php echo $no  ?></td>
+                    <td><?php echo $row->tanggal ?></td>
+                    <td><?php echo $row->jam_masuk ?></td>
+                    <td><?php echo $row->jam_pulang ?></td>
+                    <td><?php echo $row->status ?></td>
+                    <td>
+                        <?php if ($row->status == 'done'): ?>
+                            Izin
+                        <?php else: ?>
+                            <a href="<?php echo site_url('employee/pulang/' . $row->id); ?>" class="btn btn-success" id="pulangButton_<?php echo $row->id; ?>">Pulang</a>
+                            <a href="" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i>Ubah</a>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Hapus</button>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.min.js"></script>
+<script>
+    <?php foreach ($absensi as $row): ?>
+        var absensiId = <?php echo $row->id; ?>;
+        var status = '<?php echo $row->status; ?>';
+        disablePulangButton(absensiId, status);
+    <?php endforeach; ?>
 
-    <script>
-        function absen() {
-            const statusAbsenElement = document.getElementById('statusAbsen');
-            statusAbsenElement.textContent = 'Anda berhasil absen.';
+    function showSweetAlert(message) {
+        Swal.fire({
+            icon: 'info',
+            text: message,
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
+
+    function disablePulangButton(absenId, status) {
+        var pulangButton = document.getElementById("pulangButton_" + absenId);
+        if (status === 'pulang') {
+            pulangButton.classList.add("disabled");
+            pulangButton.removeAttribute("href");
         }
-    </script>
+    }
+</script>
 </body>
 </html>

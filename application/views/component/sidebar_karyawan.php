@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Karyawan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
     <!-- Tambahkan CSS kustom untuk tampilan sidebar -->
     <style>
         .sidebar {
@@ -41,11 +47,27 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <ul>
-            <li><a href="dashboard_karyawan">Dashboard Karyawan</a></li>
-            <li><a href="dashboard">Dashboard</a></li>
-            <li><a href="absensi">Absensi</a></li>
+            <li><a href="dashboard_karyawan"><i class="fa-solid fa-inbox"></i>
+            Dashboard Karyawan</a></li>
+            <br>
+            <li><a href="dashboard"><i class="fa-solid fa-user-tie"></i>
+            Dashboard</a></li>
+            <br>
+            <li><a href="absensi"><i class="fa-solid fa-id-card-clip"></i>
+            Absensi</a></li>
+            <br>
+            <li><a href="menu_absensi"><i class="fa-solid fa-square-caret-down"></i>
+            menu Absensi</a></li>
+            <br>
+            <li><a href="menu_izin"><i class="fa-brands fa-mizuni"></i>
+            menu izin</a></li>
+            <br>
+            <li><a href="profile"><i class="fa-brands fa-mizuni"></i>
+            profile</a></li>
+            <br>
             <!-- Tambahkan tautan-tautan lain sesuai kebutuhan -->
-            <li><a href="logout">Logout</a></li> <!-- Tambahkan tautan Logout -->
+            <li><a href="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Logout</a></li> <!-- Tambahkan tautan Logout -->
         <!-- Tambahkan tautan-tautan lain sesuai kebutuhan -->
         </ul>
     </div>
