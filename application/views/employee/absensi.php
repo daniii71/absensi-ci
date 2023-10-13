@@ -80,9 +80,9 @@
                         <?php if ($row->status == 'done'): ?>
                             Izin
                         <?php else: ?>
-                            <a href="<?php echo site_url('employee/pulang/' . $row->id); ?>" class="btn btn-success" id="pulangButton_<?php echo $row->id; ?>">Pulang</a>
-                            <a href="" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i>Ubah</a>
-                            <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Hapus</button>
+                            <a href="<?php echo base_url('employee/pulang/' . $row->id); ?>" class="btn btn-success" id="pulangButton_<?php echo $row->id; ?>"><i class="fa-solid fa-people-pulling"></i></i></a>
+                            <a href="<?php echo base_url('employee/update_absen/' . $row->id); ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <button class="btn btn-danger" onclick="confirmDelete(<?php echo $row->id; ?>)"><i class="fa-solid fa-trash-can"></i></button>
                         <?php endif; ?>
                     </td>
                 </tr>

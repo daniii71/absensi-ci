@@ -89,12 +89,14 @@ class Auth extends CI_Controller {
           'role' => 'user' 
       ]); 
  
-      redirect(base_url() . "auth"); 
-  } else { 
-      // Pendaftaran gagal, tangani sesuai dengan kebutuhan Anda 
-      redirect(base_url() . "auth/register"); 
-  } 
-}
+        redirect(base_url() . "auth"); 
+    } else { 
+        // Pendaftaran gagal, tangani sesuai dengan kebutuhan Anda 
+        redirect(base_url() . "auth/register"); 
+    } 
+    }
+    
+    // untuk kembali ke halaman awal
     function logout() { 
         $this->session->sess_destroy(); 
         redirect(base_url('auth')); 

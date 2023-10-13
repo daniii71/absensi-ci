@@ -86,8 +86,9 @@ class user_model extends CI_Model
         return $this->db->get($table);
     }
 
-    public function get_by_id($table, $id) {
-        return $this->db->get_where($table, array('id' => $id))->row();
+    public function get_by_id($table, $id_column, $id) {
+        $data = $this->db->where($id_column, $id)->get($table);
+        return $data;
     }
 
     public function addAbsensi($data) {
@@ -136,11 +137,6 @@ class user_model extends CI_Model
     }
 
     // update untuk mengumbah absensi 
-
-    public function update()
-    {
-        
-    }
 
     function get_id_employee($id)
     {

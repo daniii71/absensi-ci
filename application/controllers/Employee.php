@@ -21,6 +21,8 @@ class Employee extends CI_Controller
     {
         $this->load->view('employee/dashboard');
     }
+
+    // untuk absen 
     public function absensi()
     {
         if ($this->session->userdata('role') === 'karyawan') {
@@ -30,10 +32,18 @@ class Employee extends CI_Controller
             $data['absensi'] = $this->user_model->get_data('absensi')->result();
             $this->load->view('employee/absensi', $data);
         } else {
-            redirect('other_page');
+            redirect('absensi');
         }
     }
 
+    // untuk menu update absen
+    public function update_absen($id)
+    {
+        $data['absensi']=$this->user_model->get_by_id('absensi', 'id', $id)->result();
+        $this->load->view('employee/update', $data);
+    }
+
+    // untuk menu absensi
 	public function menu_absensi() {
         if ($this->session->userdata('role') === 'karyawan') {
             $user_id = $this->session->userdata('id'); // Ambil id pengguna yang sedang login
@@ -65,6 +75,7 @@ class Employee extends CI_Controller
         }
     }
 
+    // untuk menu izin
 	public function menu_izin() {
         if ($this->session->userdata('role') === 'karyawan') {
             $user_id = $this->session->userdata('id');
@@ -89,33 +100,68 @@ class Employee extends CI_Controller
         }
     }
     
-    public function pulang($absensi_id) {
-        if ($this->session->userdata('role') === 'karyawan') {
-            $this->user_model->setAbsensiPulang($absensi_id);
-    
-            // Set pesan sukses
-            $this->session->set_flashdata('success', 'Jam pulang berhasil diisi.');
-    
-            // Panggil fungsi JavaScript untuk menampilkan SweetAlert2
-            echo '<script>showSweetAlert("Jam pulang berhasil diisi.");</script>';
-    
-            redirect('employee/absensi');
-        } else {
-            redirect('other_page');
-        }
-    } 
+    // Public untuk pulang 
+    public function pulang($id) {
+        $this->user_model->updateStatusPulang($id);
+        redirect('employee/absensi');
+    }
 
-	// untuk profile 
-	function profile()
+    // Public buat batal pulang 
+    public function batal_pulang($id) {
+        // Di sini Anda dapat menambahkan logika untuk membatalkan pulang berdasarkan ID yang diberikan
+        // Misalnya, Anda dapat mengubah status dari 'pulang' menjadi 'belum done' atau melakukan sesuatu sesuai kebutuhan Anda.
+        
+        // Contoh: Mengubah status pulang menjadi 'belum done'
+        $this->user_model->updateStatusBatalPulang($id);
+    
+        // Redirect kembali ke halaman absensi atau halaman yang sesuai
+        redirect('employee/absensi');
+    }
+    
+
+
+    // funtion unruk profile 
+    public function profile()
 	{
-		$data['karyawan'] = $this->m_employee->get_id_employee($id);
-		if ($data['karyawan']) {
-			$data['title'] = 'profile_user';
-			$this->template->load('back/template', 'back/profile', $data);
-		} else {
-			redirect('dashboard', 'refresh');
-		}
+		$data['akun'] = $this->user_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
+		$this->load->view('employee/profile', $data);
 	}
+
+    // untuk mengubah profile 
+
+    public function edit_foto() 
+    {
+        // Pastikan pengguna sudah login dan memiliki sesi aktif
+        if (!$this->session->userdata('user_id')) {
+            redirect('login'); // Redirect ke halaman login jika tidak ada sesi aktif
+        }
+    
+        // Konfigurasi upload gambar
+        $config['upload_path'] = './assets/images/user/';
+        $config['allowed_types'] = 'jpg|jpeg|png';
+        $config['max_size'] = 2048; // Ukuran maksimum gambar dalam KB
+        $config['file_name'] = 'user_model' . $this->session->userdata('user_id'); // Nama file yang akan disimpan
+    
+        $this->load->library('upload', $config);
+    
+        if ($this->upload->do_upload('userfile')) {
+            // Jika upload berhasil, simpan nama file di database
+            $data = array('upload_data' => $this->upload->data());
+            $file_name = $data['upload_data']['file_name'];
+    
+            // Simpan nama file ke database (misalnya, tabel 'user')
+            $user_id = $this->session->userdata('user_id');
+            $this->user_model->updateUserImage($user_id, $file_name);
+    
+            // Redirect kembali ke halaman profil
+            redirect('employee/profile');
+        } else {
+            // Jika upload gagal, tampilkan pesan kesalahan atau validasi
+            $error = array('error' => $this->upload->display_errors());
+            $this->load->view('employee/edit_foto', $error);
+        }
+    }
+    
 }
 
 ?>
