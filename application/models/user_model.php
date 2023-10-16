@@ -125,8 +125,9 @@ class user_model extends CI_Model
     
         $data = array(
             'id_karyawan' => $data['id_karyawan'], // Menggunakan data dari parameter
-            'kegiatan' => $data['keterangan'],      // Menggunakan data dari parameter
+            'keterangan_izin' => $data['keterangan'],      // Menggunakan data dari parameter
             'tanggal' => date('Y-m-d'),
+            'kegiatan' => '-',
             'jam_masuk' => '-',
             'jam_pulang' => '-',
             'status' => 'done'
@@ -136,14 +137,64 @@ class user_model extends CI_Model
         $this->db->insert('absensi', $data);
     }
 
-    // update untuk mengumbah absensi 
 
+    // untuk function hapus absen
+    public function hapusAbsensi($absen_id) {
+        $this->db->where('id', $absen_id);
+        $this->db->delete('absensi');
+    }    
+
+    public function updateAbsensi($absen_id, $data) {
+        // Perbarui data absensi berdasarkan $absen_id
+        $this->db->where('id', $absen_id);
+        $this->db->update('absensi', $data);
+    }
+
+    public function batalPulang($absen_id) {
+        $data = array(
+            'jam_pulang' => null,
+            'status' => 'belum done'
+        );
+    
+        $this->db->where('id', $absen_id);
+        $this->db->update('absensi', $data);
+    }
+
+
+
+    // update untuk mengumbah absensi 
     function get_id_employee($id)
     {
         $this->db->where('id_user', $id);
         $this->db->get('user',)->row();
     }
     
+    public function getAbsensiById($absensi_id) {
+        // Assuming your table name is 'absensi', you can use CodeIgniter's query builder
+        $this->db->select('*');
+        $this->db->from('absensi');
+        $this->db->where('id', $absensi_id);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->row(); // Return a single row if found
+        } else {
+            return false; // Return false if no record is found
+        }
+    }
+
+    public function update_absen($absen_id, $data) 
+    {
+        $this->db->where('id', $absen_id);
+        $this->db->update('absensi', $data);
+    }   
+
+    public function update_data($table, $data, $where)
+    {
+       $this->db->update($table, $data, $where);
+        return $this->db->affected_rows();
+    }
+
 }
 
 ?>

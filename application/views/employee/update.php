@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ubah Karyawan</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/responsive.css'); ?>">
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .main {
             display: flex;
@@ -15,7 +17,7 @@
 
         .card {
             width: 400px;
-            padding: 20px;
+            padding: 20px;  
             text-align: center;
         }
 
@@ -51,35 +53,34 @@
     </style>
 </head>
 <body>
-    <div class="main">
-        <div class="card">
-            <div class="card-header">
-                <h5>Ubah Karyawan</h5>
-            </div>
-            <div class="card-body">
-                <h2 id="karyawanName">John Doe</h2>
-                <form id="updateForm" onsubmit="updateKaryawan(event)">
-                    <div class="form-group">
-                        <input type="text" id="newName" placeholder="Masukkan nama karyawan baru" required>
+<?php $this->load->view('component/sidebar_karyawan'); ?>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Ubah Absensi</h1>
+                        <?php foreach($absensi as $absen): ?>
+                    <form class="row" action="<?php echo base_url('karyawan/aksi_update_absen'); ?>"
+                        enctype="multipart/form-data" method="post">
+                        <input type="hidden" name="id" value="<?php echo $absen->id ?>">
+                        <div class="mb-3 col-12">
+                            <label for="Kegiatan" class="form-label">Kegiatan</label>
+                            <textarea class="form-control" aria-label="With textarea"
+                                name="kegiatan"><?php echo $absen->kegiatan ?></textarea>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <a class="btn btn-danger" href="javascript:history.go(-1)">Kembali</a>
+                            <button type="submit" class="btn btn-success" name="submit">Edit</button>
+                        </div>
+                    </form>
+                    <?php endforeach ?>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Update Karyawan</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-
-    <script>
-        function updateKaryawan(event) {
-            event.preventDefault();
-            var elemenKaryawan = document.getElementById("karyawanName");
-            var namaBaru = document.getElementById("newName").value;
-
-            if (namaBaru) {
-                elemenKaryawan.innerHTML = "Nama Karyawan: " + namaBaru;
-            }
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="path/to/your/custom.js"></script>
 </body>
 </html>

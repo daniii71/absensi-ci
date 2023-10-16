@@ -14,7 +14,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h2 class="mt-4">Izin</h2> <!-- Judul menu diubah menjadi "Izin" -->
-                <form action="<?= base_url('employee/menu_izin'); ?>" method="post" class="mt-3">
+                <form action="<?= base_url('employee/aksi_izin'); ?>" method="post" class="mt-3">
                     <div class="mb-3">
                         <label for="keterangan_izin" class="form-label">Keterangan Izin</label> <!-- Penulisan label yang lebih konsisten -->
                         <textarea class="form-control" id="keterangan_izin" name="keterangan_izin" rows="4" required></textarea>

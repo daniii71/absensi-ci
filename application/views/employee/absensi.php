@@ -6,6 +6,8 @@
     <title>Absensi</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-TwpyMehNlfFp1z7buNhoyzujzRkKBCuJSMbJItF8O1xyn4D3Mn+C2F5nHnuKvF5t2" crossorigin="anonymous">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,7 +58,8 @@
 
 <div class="absensi-container" style="width: 80%;">
     <div class="col-md-9">
-        <h2>Data Absen</h2>
+        <h2>DATA ABSEN</h2>
+        <br>
         <table class="table" style="width: 130%;">
             <thead class="table-dark">
                 <tr class="text-center">
@@ -80,9 +83,15 @@
                         <?php if ($row->status == 'done'): ?>
                             Izin
                         <?php else: ?>
-                            <a href="<?php echo base_url('employee/pulang/' . $row->id); ?>" class="btn btn-success" id="pulangButton_<?php echo $row->id; ?>"><i class="fa-solid fa-people-pulling"></i></i></a>
-                            <a href="<?php echo base_url('employee/update_absen/' . $row->id); ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="<?php echo base_url('employee/pulang/' . $row->id); ?>" class="btn btn-success" id="pulangButton_<?php echo $row->id; ?>"><i class="fa-solid fa-people-pulling"></i></a>
+                            <h1 class="card-title">
+                            <a href="<?php echo base_url('employee/update_absen/'). $row->id; ?>">
+                                <i class="fas fa-pencil-alt"></i> <!-- Ganti dengan kelas ikon yang sesuai -->
+                            </a>
+                        </h1>
+
                             <button class="btn btn-danger" onclick="confirmDelete(<?php echo $row->id; ?>)"><i class="fa-solid fa-trash-can"></i></button>
+
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -117,6 +126,14 @@
             pulangButton.removeAttribute("href");
         }
     }
+</script>
+<script>
+function hapus(id) {
+    if (confirm('Yakin Di Hapus?Di Hapus Tenan kiii!')) {
+        // Jika pengguna mengonfirmasi, maka akan menjalankan perintah hapus
+        window.location.href = "<?php echo base_url('employee/hapus/'); ?>" + id;
+    }
+}
 </script>
 </body>
 </html>

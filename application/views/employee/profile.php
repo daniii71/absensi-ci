@@ -10,6 +10,8 @@
 </head>
 <style>
     /* custom.css */
+
+    /* Styling untuk card */
     .card {
         border: 1px solid #e0e0e0;
         border-radius: 10px;
@@ -17,31 +19,35 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
+    /* Header card */
     .card-header {
         background-color: #f0f0f0;
         border-bottom: 1px solid #e0e0e0;
     }
 
+    /* Body card */
     .card-body {
         padding: 20px;
     }
 
+    /* Gambar dalam card */
     .card-body img {
         max-width: 100%;
         border-radius: 50%;
     }
 
+    /* Tombol sekunder */
     .btn-secondary {
         background-color: #ccc;
         color: #000;
     }
 
+    /* Tombol utama */
     .btn-primary {
         background-color: #007bff;
         color: #fff;
     }
 
-    /* Add more custom styles as needed */
 
 </style>
 
@@ -82,6 +88,7 @@
                         <div class="card-body">
                             <?php foreach ($akun as $user) : ?>
                                 <form action="<?php echo base_url('employee/edit_profile'); ?>" enctype="multipart/form-data" method="post">
+
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
                                         <input class="form-control" id="email" type="email" placeholder="Masukan email"
@@ -105,6 +112,14 @@
                                                 placeholder="Masukan nama belakang"
                                                 value="<?php echo $user->nama_belakang ?>" name="nama_belakang">
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input class="form-control" id="password" type="password" placeholder="Masukkan password" name="password">
+                                        </div>
+                                        <div class="mb-3">
+                                        <label for="image_upload" class="form-label">Foto Profil</label>
+                                        <input type="file" id="image_upload" name="image" accept="image/jpeg, image/jpg, image/png">
+                                    </div>
                                     </div>
                                     <button class="btn btn-success" type="submit">Simpan Perubahan</button>
                                 </form>

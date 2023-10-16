@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Register Admin</title>
     <link rel="stylesheet" href="https://cdn.tailwindcss.com/2.2.16/tailwind.min.css">
     <style>
         body {
@@ -24,10 +24,9 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
-        .karyawan {
+        .admin {
          text-align: center;
         }
-
 
         .title {
             text-align: center;
@@ -78,9 +77,9 @@
 
 <body>
     <div class="container">
-        <h1 class="title">REGISTER</h1>
-        <p class="admin">register sebagai admin</p>
-        <form action="<?php echo base_url(); ?>Auth/aksi_register" method="post">
+        <h1 class="title">REGISTER ADMIN</h1>
+        <p class="admin">register sebagai Admin</p>
+        <form action="<?php echo base_url(); ?>Auth/aksi_register_admin" method="post">
             <div class="form-group">
                 <input type="text" name="username" id="username" placeholder="Username" />
                 <input type="email" name="email" id="email" placeholder="Email" />
@@ -91,14 +90,12 @@
             <div class="form-group">
                 <button type="submit">Register</button>
             </div>
-            <p class="signup">
-                <a href="<?php echo base_url('auth'); ?>">login</a>
-            </a>
-        </p>
-            <p class="signup">
-                <a href="<?php echo base_url('auth/register'); ?>">admin</a>
-            </a>
-        </p>
+            <p class="message">
+                <a href="<?php echo base_url('auth'); ?>">Login</a>
+            </p>
+            <p class="message">
+                <a href="<?php echo base_url('auth/register'); ?>">Register as User</a>
+            </p>
         </form>
     </div>
 </body>

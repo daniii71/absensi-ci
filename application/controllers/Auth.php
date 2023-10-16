@@ -21,7 +21,7 @@ class Auth extends CI_Controller {
         $query = $this->m_model->getwhere('user', $data);   
         $result = $query->row_array();   
           
-        if (!empty($result) && md5($password) === $result['password']) {   
+        if (!empty($result) || md5($password) === $result['password']) {   
         $data = [   
             'logged_in' => TRUE,   
             'email' => $result['email'],   
@@ -75,11 +75,11 @@ class Auth extends CI_Controller {
         
        
       // Muat model database dan masukkan data 
-  $this->load->model('M_model'); 
-  $registration_result = $this->M_model->register_user($data); 
- 
-  if ($registration_result) { 
-      // Pendaftaran berhasil 
+    $this->load->model('M_model'); 
+    $registration_result = $this->M_model->register_user($data); 
+    
+    if ($registration_result) { 
+        // Pendaftaran berhasil 
       $this->session->set_userdata([ 
           'logged_in' => TRUE, 
           'email' => $email, 
@@ -95,7 +95,63 @@ class Auth extends CI_Controller {
         redirect(base_url() . "auth/register"); 
     } 
     }
-    
+
+    // ini untuk hasil text register admin
+
+    public function register_admin()
+    {
+        $this->load->view('auth/register_admin');
+    }
+
+    public function aksi_register_admin()
+    {
+        $username = $this->input->post('username', true);
+        $email = $this->input->post('email', true);
+        $nama_depan = $this->input->post('nama_depan', true);
+        $nama_belakang = $this->input->post('nama_belakang', true);
+        $password = $this->input->post('password', true);
+        $role = $this->input->post('role', true); // Menambahkan role
+
+        // Password harus lebih dari 8 karakter
+        if (strlen($password) < 8) {
+            // Password kurang dari 8 karakter
+            redirect(base_url() . "auth/register_admin");
+        }
+
+        // Hash the password (gunakan metode hash yang lebih aman daripada md5)
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+        $data = [
+            'username' => $username,
+            'email' => $email,
+            'nama_depan' => $nama_depan,
+            'nama_belakang' => $nama_belakang,
+            'password' => $hashed_password,
+            'role' => 'admin'
+        ];
+
+        // Muat model database dan masukkan data
+        $this->load->model('M_model');
+        $registration_result = $this->M_model->register_user($data);
+
+        if ($registration_result) {
+            // Pendaftaran berhasil
+            $this->session->set_userdata([
+                'logged_in' => TRUE,
+                'email' => $email,
+                'username' => $username,
+                'nama_depan' => $nama_depan,
+                'nama_belakang' => $nama_belakang,
+                'role' => 'admin'
+            ]);
+
+            redirect(base_url() . "auth");
+        } else {
+            // Pendaftaran gagal, tangani sesuai kebutuhan Anda
+            redirect(base_url() . "auth/register_admin");
+        }
+    }
+
     // untuk kembali ke halaman awal
     function logout() { 
         $this->session->sess_destroy(); 
