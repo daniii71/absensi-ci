@@ -180,6 +180,40 @@ class Employee extends CI_Controller
 		$this->load->view('employee/profile', $data);
 	}
 
+    public function edit_profile() {
+		$config['upload_path'] = './assets/images/user/'; // Lokasi penyimpanan gambar di server
+		$config['allowed_types'] = 'jpg|jpeg|png'; // Tipe file yang diizinkan
+		$config['max_size'] = 5120; // Maksimum ukuran file (dalam KB)
+	
+		$this->load->library('upload', $config);
+	
+		if ($this->upload->do_upload('userfile')) {
+			$upload_data = $this->upload->data();
+			$file_name = $upload_data['file_name'];
+	
+			// Update nama file gambar baru ke dalam database untuk user yang sesuai
+			$user_id = $this->session->userdata('id'); // Ganti ini dengan cara Anda menyimpan ID user yang sedang login
+			$current_image = $this->m_model->get_current_image($user_id); // Dapatkan nama gambar saat ini
+	
+			if ($current_image !== 'User.png') {
+				// Hapus gambar saat ini jika bukan 'User.png'
+				unlink('./assets/images/user/' . $current_image);
+			}
+	
+			$this->m_model->update_image($user_id, $file_name); // Gantilah 'm_model' dengan model Anda
+			$this->session->set_flashdata('berhasil_ubah_foto', 'Foto berhasil diperbarui.');
+
+	
+			// Redirect atau tampilkan pesan keberhasilan
+			redirect('employee/profile'); // Gantilah dengan halaman yang sesuai
+		} else {
+			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('error_profile', $error['error']);
+			redirect('employee/profile');
+			// Tangani kesalahan unggah gambar
+		}
+    }
+
     // untuk mengubah profile 
 
     public function edit_foto() {

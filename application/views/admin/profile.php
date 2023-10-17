@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-TwpyMehNlfFp1z7buNhoyzujzRkKBCuJSMbJItF8O1xyn4D3Mn+C2F5nHnuKvF5t2" crossorigin="anonymous">
 </head>
 <style>
+    img{
+        width:40%;
+    }
            body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -70,7 +73,7 @@
                                     src="<?php echo base_url('assets/images/user/' .$user->image) ?>" alt="">
                                 <div class="small font-italic text-muted">Berbentuk jpg/jpeg/png.</div>
                                 <p class="small font-italic text-muted mb-4">Disarankan foto</p>
-                                <form action="<?php echo base_url('karyawan/edit_foto'); ?>" method="post"
+                                <form action="<?php echo base_url('admin/edit_foto'); ?>" method="post"
                                     enctype="multipart/form-data">
                                     <label for="image_upload" class="btn btn-success">
                                         Edit Foto
@@ -85,7 +88,7 @@
                         <div class="card mb-4">
                             <div class="card-header">Info Data</div>
                             <div class="card-body">
-                                <form action="<?php echo base_url('karyawan/edit_profile'); ?>"
+                                <form action="<?php echo base_url('admin/edit_profile'); ?>"
                                     enctype="multipart/form-data" method="post">
                                     <div class="mb-3">
                                         <label class="small mb-1" for="email">Email</label>

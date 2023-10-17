@@ -1441,7 +1441,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 	/**
 	 * get_where()
 	 *
-	 * Allows the where clause, limit and offset to be added directly
+	 * Allows the absen.absensi, limit and offset to be added directly
 	 *
 	 * @param	string	$table
 	 * @param	string	$where

@@ -10,6 +10,7 @@ class Admin extends CI_Controller {
         // Load model yang diperlukan
         $this->load->model('admin_model');
         $this->load->model('user_model');
+        $this->load->helper('admin_helper');
         $this->load->model('m_model');
         $this->load->library('form_validation');
     }
@@ -127,7 +128,7 @@ class Admin extends CI_Controller {
 		}
 
 		$this->session->set_userdata($data);
-		$update_result = $this->m_model->update_data('user', $data, array('id' => $this->session->userdata('id')));
+		$update_result = $this->m_model->ubah_data('user', $data, array('id' => $this->session->userdata('id')));
 
 		if ($update_result) {
 			$this->session->set_flashdata('update_user', 'Data berhasil diperbarui');
@@ -305,13 +306,14 @@ class Admin extends CI_Controller {
         header(
             'Content-Type: aplication/vnd.openxmlformants-officedocument.spreadsheetml.sheet'
         );
-        header('Content-Disposition: attachment; filename="KARYAWAN.xlsx"');
+        header(
+            'Content-Disposition: attachment; filename="ABSEN KARYAWAN.xlsx"'
+        );
         header('Cache-Control: max-age=0');
 
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
     }
-
 }
 
 ?>
