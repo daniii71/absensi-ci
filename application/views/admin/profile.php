@@ -4,55 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Absensi</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/responsive.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/profile.css'); ?>">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-TwpyMehNlfFp1z7buNhoyzujzRkKBCuJSMbJItF8O1xyn4D3Mn+C2F5nHnuKvF5t2" crossorigin="anonymous">
 </head>
 <style>
-    /* custom.css */
+           body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    /* Styling untuk card */
-    .card {
-        border: 1px solid #e0e0e0;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+        .absensi-container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
 
-    /* Header card */
-    .card-header {
-        background-color: #f0f0f0;
-        border-bottom: 1px solid #e0e0e0;
-    }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    /* Body card */
-    .card-body {
-        padding: 20px;
-    }
+        button:hover {
+            background-color: #0056b3;
+        }
 
-    /* Gambar dalam card */
-    .card-body img {
-        max-width: 100%;
-        border-radius: 50%;
-    }
+        p {
+            font-size: 24px;
+            color: #333;
+            margin: 10px 0;
+        }
 
-    /* Tombol sekunder */
-    .btn-secondary {
-        background-color: #ccc;
-        color: #000;
-    }
-
-    /* Tombol utama */
-    .btn-primary {
-        background-color: #007bff;
-        color: #fff;
-    }
-
-
-</style>
+        .result {
+            font-size: 18px;
+            color: #28a745;
+        }
+        
+        </style>
 
 <body>
-<?php $this->load->view('component/sidebar_karyawan'); ?>
+<?php $this->load->view('component/sidebar_admin'); ?>
     <div class="main m-4">
         <div class="container w-75">
             <div class="card-body">
@@ -140,96 +144,6 @@
             </div>
         </div>
     </div>
-</body>
-
-<script>
-function togglePassword(inputId) {
-    var x = document.getElementById(inputId);
-    var icon = document.getElementById("icon-" + inputId);
-
-    if (x.type === "password") {
-        x.type = "text";
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
-    } else {
-        x.type = "password";
-        icon.classList.remove("fa-eye-slash");
-        icon.classList.add("fa-eye");
-    }
-}
-</script>
-
-<?php if($this->session->flashdata('kesalahan_password')){ ?>
-<script>
-Swal.fire({
-    title: "Error!",
-    text: "<?php echo $this->session->flashdata('kesalahan_password'); ?>",
-    icon: "warning",
-    showConfirmButton: false,
-    timer: 1500
-});
-</script>
-<?php } ?>
-
-<?php if($this->session->flashdata('gagal_update')){ ?>
-<script>
-Swal.fire({
-    title: "Error!",
-    text: "<?php echo $this->session->flashdata('gagal_update'); ?>",
-    icon: "error",
-    showConfirmButton: false,
-    timer: 1500
-});
-</script>
-<?php } ?>
-
-<?php if($this->session->flashdata('error_profile')){ ?>
-<script>
-Swal.fire({
-    title: "Error!",
-    text: "<?php echo $this->session->flashdata('error_profile'); ?>",
-    icon: "error",
-    showConfirmButton: false,
-    timer: 1500
-});
-</script>
-<?php } ?>
-
-<?php if($this->session->flashdata('berhasil_ubah_foto')){ ?>
-<script>
-Swal.fire({
-    title: "Berhasil",
-    text: "<?php echo $this->session->flashdata('berhasil_ubah_foto'); ?>",
-    icon: "success",
-    showConfirmButton: false,
-    timer: 1500
-});
-</script>
-<?php } ?>
-
-<?php if($this->session->flashdata('ubah_password')){ ?>
-<script>
-Swal.fire({
-    title: "Success!",
-    text: "<?php echo $this->session->flashdata('ubah_password'); ?>",
-    icon: "success",
-    showConfirmButton: false,
-    timer: 1500
-});
-</script>
-<?php } ?>
-
-<?php if($this->session->flashdata('update_user')){ ?>
-<script>
-Swal.fire({
-    title: "Success!",
-    text: "<?php echo $this->session->flashdata('update_user'); ?>",
-    icon: "success",
-    showConfirmButton: false,
-    timer: 1500
-});
-</script>
-<?php } ?>
 </body>
 
 </html>

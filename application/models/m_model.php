@@ -50,15 +50,15 @@ class M_model extends CI_Model
     }
 
     function tampil_id_kelas_byid($id)
-{
-    $ci = &get_instance();
-    $ci -> load->database();
-    $result = $ci->db->where('id_siswa', $id)->get('siswa');
-    foreach ($result->result() as $c) {
-        $stmt = $c->id_kelas;
-        return $stmt;
-    }
-}
+        {
+            $ci = &get_instance();
+            $ci -> load->database();
+            $result = $ci->db->where('id_siswa', $id)->get('siswa');
+            foreach ($result->result() as $c) {
+                $stmt = $c->id_kelas;
+                return $stmt;
+            }
+        }
 
 public function getDataPembayaran() {
     $this->db->select('pembayaran.id, pembayaran.jenis_pembayaran, pembayaran.total_pembayaran, siswa.nama_siswa, kelas.tingkat_kelas, kelas.jurusan_kelas');
@@ -114,6 +114,46 @@ public function getDataSiswa()
         // Masukkan data ke dalam tabel 'users' dan kembalikan hasilnya 
         return $this->db->insert('user', $data); 
     }
+
+    // ini untuk get function bulanan 
+    public function getRekapPerBulan($bulan) {
+        $this->db->select('MONTH(tanggal) as bulan, COUNT(*) as total_absensi');
+        $this->db->from('absensi');
+        $this->db->where('MONTH(tanggal)', $bulan); // Menyaring data berdasarkan bulan
+        $this->db->group_by('bulan');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // untuk mingguan 
+    public function getRekapPerMinggu($start_date, $end_date) {
+        $this->db->select('*');
+        $this->db->from('absensi');
+        $this->db->where('date >=', $start_date);
+        $this->db->where('date <=', $end_date);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    // ini untuk function rekap hari dan bulan
+    public function getRekapHarianByBulan($bulan) {
+        $this->db->select('*');
+        $this->db->from('absensi');
+        $this->db->where('MONTH(absensi.tanggal )', $bulan);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    // ini function get harian
+    public function getPerHari($tanggal)
+        {
+            $this->db->from('absensi');
+            $this->db->select('absensi.*, user.username');
+            $this->db->join('user', 'absensi.id_karyawan = user.id', 'left');
+            $this->db->where('absensi.tanggal', $tanggal);
+            $query = $this->db->get();
+            return $query->result_array();
+        }
 
 }
 ?>

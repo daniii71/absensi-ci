@@ -8,6 +8,7 @@ class Employee extends CI_Controller
 		parent::__construct();
         // load model dan libry yang di perlukan 
 		$this->load->model('user_model');
+		$this->load->model('m_model');
 		$this->load->library('form_validation');
 		$this->load->library('session');
 		$this->load->library('upload');
@@ -97,7 +98,7 @@ class Employee extends CI_Controller
                 }
             }
 
-            public function izin()
+            public function menu_izin()
 	        {
 	        	$this->load->view('employee/menu_izin');
 	        }
@@ -172,21 +173,6 @@ class Employee extends CI_Controller
     redirect(base_url('employee/absensi'));
 }
 
-
-    // Public buat batal pulang 
-    public function batal_pulang($id) {
-        // Di sini Anda dapat menambahkan logika untuk membatalkan pulang berdasarkan ID yang diberikan
-        // Misalnya, Anda dapat mengubah status dari 'pulang' menjadi 'belum done' atau melakukan sesuatu sesuai kebutuhan Anda.
-        
-        // Contoh: Mengubah status pulang menjadi 'belum done'
-        $this->user_model->updateStatusBatalPulang($id);
-    
-        // Redirect kembali ke halaman absensi atau halaman yang sesuai
-        redirect('employee/absensi');
-    }
-    
-
-
     // funtion unruk profile 
     public function profile()
 	{
@@ -196,40 +182,39 @@ class Employee extends CI_Controller
 
     // untuk mengubah profile 
 
-    public function edit_foto() 
-    {
-        // Pastikan pengguna sudah login dan memiliki sesi aktif
-        if (!$this->session->userdata('user_id')) {
-            redirect('login'); // Redirect ke halaman login jika tidak ada sesi aktif
-        }
-    
-        // Konfigurasi upload gambar
-        $config['upload_path'] = './assets/images/user/';
-        $config['allowed_types'] = 'jpg|jpeg|png';
-        $config['max_size'] = 2048; // Ukuran maksimum gambar dalam KB
-        $config['file_name'] = 'user_model' . $this->session->userdata('user_id'); // Nama file yang akan disimpan
-    
-        $this->load->library('upload', $config);
-    
-        if ($this->upload->do_upload('userfile')) {
-            // Jika upload berhasil, simpan nama file di database
-            $data = array('upload_data' => $this->upload->data());
-            $file_name = $data['upload_data']['file_name'];
-    
-            // Simpan nama file ke database (misalnya, tabel 'user')
-            $user_id = $this->session->userdata('user_id');
-            $this->user_model->updateUserImage($user_id, $file_name);
-    
-            // Redirect kembali ke halaman profil
-            redirect('employee/profile');
-        } else {
-            // Jika upload gagal, tampilkan pesan kesalahan atau validasi
-            $error = array('error' => $this->upload->display_errors());
-            $this->load->view('employee/edit_foto', $error);
-        }
-    }
+    public function edit_foto() {
+		$config['upload_path'] = './assets/images/user/'; // Lokasi penyimpanan gambar di server
+		$config['allowed_types'] = 'jpg|jpeg|png'; // Tipe file yang diizinkan
+		$config['max_size'] = 5120; // Maksimum ukuran file (dalam KB)
+	
+		$this->load->library('upload', $config);
+	
+		if ($this->upload->do_upload('userfile')) {
+			$upload_data = $this->upload->data();
+			$file_name = $upload_data['file_name'];
+	
+			// Update nama file gambar baru ke dalam database untuk user yang sesuai
+			$user_id = $this->session->userdata('id'); // Ganti ini dengan cara Anda menyimpan ID user yang sedang login
+			$current_image = $this->m_model->get_current_image($user_id); // Dapatkan nama gambar saat ini
+	
+			if ($current_image !== 'User.png') {
+				// Hapus gambar saat ini jika bukan 'User.png'
+				unlink('./assets/images/user/' . $current_image);
+			}
+	
+			$this->m_model->update_image($user_id, $file_name); // Gantilah 'm_model' dengan model Anda
+			$this->session->set_flashdata('berhasil_ubah_foto', 'Foto berhasil diperbarui.');
 
-    // untuk edit profile nya 
+	
+			// Redirect atau tampilkan pesan keberhasilan
+			redirect('employee/profile'); // Gantilah dengan halaman yang sesuai
+		} else {
+			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('error_profile', $error['error']);
+			redirect('employee/profile');
+			// Tangani kesalahan unggah gambar
+		}
+	}
 
 }
 

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Absensi</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-TwpyMehNlfFp1z7buNhoyzujzRkKBCuJSMbJItF8O1xyn4D3Mn+C2F5nHnuKvF5t2" crossorigin="anonymous">
@@ -90,7 +92,7 @@
                             </a>
                         </h1>
 
-                            <button class="btn btn-danger" onclick="confirmDelete(<?php echo $row->id; ?>)"><i class="fa-solid fa-trash-can"></i></button>
+                            <button class="btn btn-danger" onclick="hapus(<?php echo $row->id; ?>)"><i class="fa-solid fa-trash-can"></i></button>
 
                         <?php endif; ?>
                     </td>
@@ -128,12 +130,24 @@
     }
 </script>
 <script>
-function hapus(id) {
-    if (confirm('Yakin Di Hapus?Di Hapus Tenan kiii!')) {
-        // Jika pengguna mengonfirmasi, maka akan menjalankan perintah hapus
-        window.location.href = "<?php echo base_url('employee/hapus/'); ?>" + id;
+    function hapus(id) {
+        Swal.fire({
+            title: 'Yakin Di Hapus?',
+            text: "Anda tidak dapat mengembalikannya!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#198754',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "<?php echo base_url(
+                    'employee/hapus/'
+                ); ?>" + id;
+            }
+        });
     }
-}
-</script>
+    </script>
 </body>
 </html>

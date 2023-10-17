@@ -501,6 +501,10 @@
                 <i class="fa-solid fa-book-open-reader"></i> Rekapan Mingguan
                 </a>
                 <br>
+                <a href="<?= base_url('admin/profile'); ?>" class="dashboard-nav-item">
+                <i class="fa-regular fa-user"></i> Profile
+                </a>
+                <br>
                 <li><button onclick="confirmLogout()">
                 <i class="fa-solid fa-right-from-bracket"></i> Logout
                 </a>

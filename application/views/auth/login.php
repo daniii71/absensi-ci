@@ -23,6 +23,7 @@
         .card {
             background-color: rgba(0, 0, 0, 0.2);
             padding: 20px;
+            width: 40%;
         }
 
         .card.left {

@@ -88,37 +88,52 @@
             Total
         </div>
     </div>
-    <table class="table table-striped mt-5">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                </tbody>
-            </table> 
-</div>
+    <div class="table-responsive"> 
+                        <table class="table table-bordered"> 
+ 
+                            <thead class="table-dark"> 
+                                <tr> 
+                                    <th>No</th> 
+                                    <th>Nama</th> 
+                                    <th>Kegiatan</th> 
+                                    <th>Jam Masuk</th> 
+                                    <th>Jam Pulang</th> 
+                                    <th>Keterangan Izin</th> 
+                                    <th>Status</th> 
+ 
+                                </tr> 
+                            </thead> 
+                            <tbody> 
+                                <?php $no = 0; 
+                                    foreach ($absensi as $row): 
+                                        $no++ ?> 
+                                <tr> 
+                                    <td> 
+                                        <?php echo $no ?> 
+                                    </td> 
+                                    <td> 
+                                        <?php echo tampil_full_nama_byid($row->id_karyawan) ?> 
+                                    </td> 
+                                    <td> 
+                                        <?php echo $row->kegiatan ?> 
+                                    </td> 
+                                    <td> 
+                                        <?php echo $row->jam_masuk ?> 
+                                    </td> 
+                                    <td> 
+                                        <?php echo $row->jam_pulang ?> 
+                                    </td> 
+                                    <td><?php echo $row->keterangan_izin ?></td> 
+                                    <td> 
+                                        <?php echo $row->status?> 
+                                    </td> 
+ 
+                                </tr> 
+                                <?php endforeach ?> 
+ 
+                            </tbody> 
+                        </table> 
+                    </div>
 
         <script>
         // Mengambil nilai jumlah masuk dan jumlah izin dari elemen HTML
