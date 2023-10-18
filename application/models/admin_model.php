@@ -16,8 +16,11 @@ class Admin_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getRekapHarian() {
-        $this->db->select('absensi.id, absensi.tanggal, absensi.kegiatan, absensi.id_karyawan, absensi.jam_masuk, absensi.jam_pulang, absensi.status');
+    public function getRekapHarian($tanggal)
+    {
+        $this->db->select(
+            'absensi.id, absensi.tanggal, absensi.kegiatan, absensi.id_karyawan, absensi.jam_masuk, absensi.jam_pulang, absensi.status'
+        );
         $this->db->from('absensi');
         $this->db->where('absensi.tanggal', $tanggal); // Menyaring data berdasarkan tanggal
         $query = $this->db->get();
@@ -38,32 +41,15 @@ class Admin_model extends CI_Model {
         return $query->result_array();
     }
     
-    public function getBulanan($bulan)
+    public function getRekapPerBulan($bulan)
         {
             $this->db->select("absensi.*, user.username");
             $this->db->from("absensi");
             $this->db->join("user", "absensi.id_karyawan = user.id", "left");
-            $this->db->where("DATE_FORMAT(date, '%m') = ", $bulan); // Perbaikan di sini
+            $this->db->where("DATE_FORMAT(tanggal, '%m') = ", $bulan); // Perbaikan di sini
             $query = $this->db->get();
             return $query->result();
         }
-    
-    // public function getRekapPerBulan($bulan) {
-    //     $this->db->select('MONTH(tanggal) as bulan, COUNT(*) as total_absensi');
-    //     $this->db->from('absensi');
-    //     $this->db->where('MONTH(tanggal)', $bulan); // Menyaring data berdasarkan bulan
-    //     $this->db->group_by('bulan');
-    //     $query = $this->db->get();
-    //     return $query->result_array();
-    // }
-
-    // public function getRekapHarianByBulan($bulan) {
-    //     $this->db->select('*');
-    //     $this->db->from('absensi');
-    //     $this->db->where('MONTH(absensi.tanggal)', $bulan);
-    //     $query = $this->db->get();
-    //     return $query->result_array();
-    // }
     
     public function getExportKaryawan() {
         $this->db->select('absensi.id, user.username, absensi.kegiatan, absensi.tanggal, absensi.jam_masuk, absensi.jam_pulang, absensi.status');
@@ -72,6 +58,14 @@ class Admin_model extends CI_Model {
         $query = $this->db->get();
     
         return $query->result();
+    }
+    public function getRekapHarianByBulan($bulan) {
+        $this->db->select('absensi.*, user.username');
+        $this->db->from('absensi');
+        $this->db->join('user', 'absensi.id_karyawan = user.id', 'left');
+        $this->db->where('MONTH(absensi.tanggal)', $bulan);
+        $query = $this->db->get();
+        return $query->result_array();
     }
     
     public function exportDataRekapHarian($tanggal_awal, $tanggal_akhir) {

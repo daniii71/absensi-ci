@@ -12,7 +12,6 @@ class Employee extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->library('session');
 		$this->load->library('upload');
-	
 	}
 
 	public function karyawan()
@@ -22,7 +21,8 @@ class Employee extends CI_Controller
 
     public function dashboard()
     {
-        $this->load->view('employee/dashboard');
+		$data['absensi'] = $this->user_model->get_data('absensi')->result();
+        $this->load->view('employee/dashboard', $data);
     }
 
     // untuk absen 
@@ -37,10 +37,16 @@ class Employee extends CI_Controller
             }
         }   
 
-
-        
+		public function menu_absensi()
+		{
+			$this->load->view('employee/menu_absensi');
+		}
+		
         // untuk menu absensi
-        public function menu_absensi() {
+        public function aksi_absensi() {
+			date_default_timezone_set('Asia/Jakarta');
+			$jam_masuk = date('H:i:s');
+
             if ($this->session->userdata('role') === 'karyawan') {
                 $user_id = $this->session->userdata('id'); // Ambil id pengguna yang sedang login
                 $this->form_validation->set_rules('kegiatan', 'Kegiatan', 'required');
@@ -49,14 +55,12 @@ class Employee extends CI_Controller
                     $this->load->view('employee/menu_absensi');
                 } else {
                     
-                    date_default_timezone_set('Asia/Jakarta');
-                    $jam_masuk = date('H:i:s');
-                    
                     $data = array(
                         'id_karyawan' => $user_id, // Tetapkan id_karyawan berdasarkan pengguna yang sedang login
                         'kegiatan' => $this->input->post('kegiatan'),
                         'tanggal' => date('Y-m-d'),
                         'jam_masuk' => $jam_masuk,
+                        'jam_pulang' => $jam_pulang,
                         'status' => 'belum done'
                     );
                     
@@ -79,7 +83,7 @@ class Employee extends CI_Controller
 	}
 
         // untuk menu update absen
-            public function aksi_update_absen() 
+            public function update() 
             {
                 $id_karyawan = $this->session->userdata('id');
 		        $data = [
@@ -103,22 +107,11 @@ class Employee extends CI_Controller
 	        	$this->load->view('employee/menu_izin');
 	        }
 
-    // untuk menu izin
+    // untuk aksi izin nya 
 	public function aksi_izin() {
 		$id_karyawan = $this->session->userdata('id');
 		$tanggal_sekarang = date('Y-m-d'); // Mendapatkan tanggal hari ini
-	
-		// Cek apakah sudah melakukan absen hari ini
-		// $is_already_absent = $this->m_model->cek_absen($id_karyawan, $tanggal_sekarang);
-	
-		// Cek apakah sudah melakukan izin hari ini
-		// $is_already_izin = $this->m_model->cek_izin($id_karyawan, $tanggal_sekarang);
-	
-		if ($is_already_absent) {
-			$this->session->set_flashdata('gagal_izin', 'Anda sudah melakukan absen hari ini.');
-		} elseif ($is_already_izin) {
-			$this->session->set_flashdata('gagal_izin', 'Anda sudah mengajukan izin hari ini.');
-		} else {
+
 			$data = [
 				'id_karyawan' => $id_karyawan,
 				'kegiatan' => '-',
@@ -126,13 +119,12 @@ class Employee extends CI_Controller
 				'keterangan_izin' => $this->input->post('keterangan_izin'),
 				'jam_masuk' => '00:00:00', // Mengosongkan jam_masuk
 				'jam_pulang' => '00:00:00', // Mengosongkan jam_pulang
-				'date' => $tanggal_sekarang, // Menyimpan tanggal izin
+				'tanggal' => date('Y-m-d'), // Menyimpan tanggal izin
 			];
-			$this->m_model->tambah_data('absensi', $data);
+			$this->user_model->tambah_data('absensi', $data);
 			$this->session->set_flashdata('berhasil_izin', 'Berhasil Izin.');
-		}
 	
-		redirect(base_url('employee/absen'));
+		redirect(base_url('employee/absensi'));
 	}
 
     // untuk aksi update
@@ -151,7 +143,7 @@ class Employee extends CI_Controller
         }
         else
         {
-            redirect(base_url('employee/izin/update_izin/'.$this->input->post('id')));
+            redirect(base_url('employee/update_izin/'.$this->input->post('id')));
         }
     }
 
@@ -215,7 +207,6 @@ class Employee extends CI_Controller
     }
 
     // untuk mengubah profile 
-
     public function edit_foto() {
 		$config['upload_path'] = './assets/images/user/'; // Lokasi penyimpanan gambar di server
 		$config['allowed_types'] = 'jpg|jpeg|png'; // Tipe file yang diizinkan

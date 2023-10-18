@@ -14,13 +14,16 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h2 class="mt-4">Izin</h2> <!-- Judul menu diubah menjadi "Izin" -->
-                <form action="<?= base_url('employee/aksi_izin'); ?>" method="post" class="mt-3">
-                    <div class="mb-3">
-                        <label for="keterangan_izin" class="form-label">Keterangan Izin</label> <!-- Penulisan label yang lebih konsisten -->
-                        <textarea class="form-control" id="keterangan_izin" name="keterangan_izin" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Izin</button> <!-- Teks tombol diubah menjadi "Izin" -->
-                </form>
+                <form class="row" action="<?php echo base_url('employee/aksi_izin'); ?>"
+                        enctype="multipart/form-data" method="post">
+                        <div class="mb-3 col-12">
+                            <label for="Keterangan" class="form-label">Keterangan</label>
+                            <textarea class="form-control" aria-label="With textarea" name="keterangan_izin"></textarea>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success" name="submit">Izin</button>
+                        </div>
+                    </form>
             </div>
         </div>
     </div>

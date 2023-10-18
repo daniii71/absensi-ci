@@ -116,20 +116,20 @@ public function getDataSiswa()
     }
 
     // ini untuk get function bulanan 
-    public function getRekapPerBulan($bulan) {
-        $this->db->select('MONTH(tanggal) as bulan, COUNT(*) as total_absensi');
-        $this->db->from('absensi');
-        $this->db->where('MONTH(tanggal)', $bulan); // Menyaring data berdasarkan bulan
-        $this->db->group_by('bulan');
-        $query = $this->db->get();
-        return $query->result_array();
-    }
+    // public function getRekapPerBulan($bulan) {
+    //     $this->db->select('MONTH(tanggal) as bulan, COUNT(*) as total_absensi');
+    //     $this->db->from('absensi');
+    //     $this->db->where('MONTH(tanggal)', $bulan); // Menyaring data berdasarkan bulan
+    //     $this->db->group_by('bulan');
+    //     $query = $this->db->get();
+    //     return $query->result_array();
+    // }
 
     // untuk mingguan 
     public function getRekapPerMinggu($start_date, $end_date) {
         $this->db->select('*');
         $this->db->from('absensi');
-        $this->db->where('date >=', $start_date);
+        $this->db->where('date >=', $start_date); 
         $this->db->where('date <=', $end_date);
         $query = $this->db->get();
         return $query->result();
@@ -179,5 +179,60 @@ public function getDataSiswa()
     
             return null; // Kembalikan null jika data tidak ditemukan
         }
+
+        public function cek_izin($id_karyawan, $tanggal)
+        {
+            $this->db->where('id_karyawan', $id_karyawan);
+            $this->db->where('tanggal', $tanggal);
+            $this->db->where('status', 'true'); // Hanya mencari entri dengan status izin
+            $query = $this->db->get('absensi');
+    
+            if ($query->num_rows() > 0) {
+                return true; // Jika sudah ada entri izin untuk karyawan dan tanggal tertentu
+            } else {
+                return false; // Jika belum ada entri izin untuk karyawan dan tanggal tertentu
+            }
+        }
+    
+        public function cek_absen($id_karyawan, $tanggal)
+        {
+            $this->db->where('id_karyawan', $id_karyawan);
+            $this->db->where('tanggal', $tanggal);
+            $query = $this->db->get('absensi');
+    
+            if ($query->num_rows() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function getBulanan($bulan)
+    {
+        $this->db->select('absensi.*, user.username');
+        $this->db->from('absensi');
+        $this->db->join('user', 'absensi.id_karyawan = user.id', 'left');
+        $this->db->where("DATE_FORMAT(tanggal, '%m') = ", $bulan); // Perbaikan di sini
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getHarianData($date)
+    {
+        $this->db->select('absensi.*, user.nama_depan, user.nama_belakang');
+        $this->db->from('absensi');
+        $this->db->join('user', 'absensi.id_karyawan = user.id', 'left');
+        $this->db->where('tanggal', $date);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_bulanan($date)
+    {
+        $this->db->from('absensi');
+        $this->db->where("DATE_FORMAT(absensi.tanggal, '%m') =", $date);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 ?>

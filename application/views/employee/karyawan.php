@@ -4,6 +4,7 @@ $absensi = 10; // You can replace 10 with the actual value you want to display.
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,41 +16,42 @@ $absensi = 10; // You can replace 10 with the actual value you want to display.
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
 
-        .main {
-            margin-left: 20%;
-            padding: 20px;
-        }
+    .main {
+        margin-left: 20%;
+        padding: 20px;
+    }
 
-        .card {
-            text-align: center;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 10px;
-            padding: 20px;
-            transition: transform 0.3s;
-        }
+    .card {
+        text-align: center;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 10px;
+        padding: 20px;
+        transition: transform 0.3s;
+    }
 
-        .card:hover {
-            transform: scale(1.05);
-        }
+    .card:hover {
+        transform: scale(1.05);
+    }
 
-        h5 {
-            color: #333;
-        }
+    h5 {
+        color: #333;
+    }
 
-        h4 {
-            font-size: 24px;
-            color: #007BFF;
-            margin: 10px 0;
-        }
+    h4 {
+        font-size: 24px;
+        color: #007BFF;
+        margin: 10px 0;
+    }
     </style>
 </head>
+
 <body>
     <?php $this->load->view('./component/sidebar_karyawan'); ?>
 
@@ -92,4 +94,5 @@ $absensi = 10; // You can replace 10 with the actual value you want to display.
         </div>
     </div>
 </body>
+
 </html>

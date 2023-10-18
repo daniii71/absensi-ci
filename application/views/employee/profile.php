@@ -9,50 +9,48 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/profile.css'); ?>">
 </head>
 <style>
-    /* custom.css */
+/* custom.css */
 
-    /* Styling untuk card */
-    .card {
-        border: 1px solid #e0e0e0;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+/* Styling untuk card */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-    /* Header card */
-    .card-header {
-        background-color: #f0f0f0;
-        border-bottom: 1px solid #e0e0e0;
-    }
+/* Header card */
+.card-header {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
+}
 
-    /* Body card */
-    .card-body {
-        padding: 20px;
-    }
+/* Body card */
+.card-body {
+    padding: 20px;
+}
 
-    /* Gambar dalam card */
-    .card-body img {
-        max-width: 100%;
-        border-radius: 50%;
-    }
+/* Gambar dalam card */
+.card-body img {
+    max-width: 100%;
+    border-radius: 50%;
+}
 
-    /* Tombol sekunder */
-    .btn-secondary {
-        background-color: #ccc;
-        color: #000;
-    }
+/* Tombol sekunder */
+.btn-secondary {
+    background-color: #ccc;
+    color: #000;
+}
 
-    /* Tombol utama */
-    .btn-primary {
-        background-color: #007bff;
-        color: #fff;
-    }
-
-
+/* Tombol utama */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
 </style>
 
 <body>
-<?php $this->load->view('component/sidebar_karyawan'); ?>
+    <?php $this->load->view('component/sidebar_karyawan'); ?>
     <div class="main m-4">
         <div class="container w-75">
             <div class="card-body">
@@ -64,9 +62,9 @@
                             <div class="card-body text-center">
                                 <img class="img-account-profile rounded-circle mb-2"
                                     src="<?php echo base_url('assets/images/user/' .$user->image) ?>" alt="">
-                                <div class="small font-italic text-muted">Berbentuk jpg/jpeg/png.</div>
+                                <div class="small font-italic text-muted"></div>
                                 <p class="small font-italic text-muted mb-4">Disarankan foto</p>
-                                <form action="<?php echo base_url('karyawan/edit_foto'); ?>" method="post"
+                                <form action="<?php echo base_url('employee/edit_foto'); ?>" method="post"
                                     enctype="multipart/form-data">
                                     <label for="image_upload" class="btn btn-success">
                                         Edit Foto
@@ -81,7 +79,7 @@
                         <div class="card mb-4">
                             <div class="card-header">Info Data</div>
                             <div class="card-body">
-                                <form action="<?php echo base_url('karyawan/edit_profile'); ?>"
+                                <form action="<?php echo base_url('employee/edit_profile'); ?>"
                                     enctype="multipart/form-data" method="post">
                                     <div class="mb-3">
                                         <label class="small mb-1" for="email">Email</label>

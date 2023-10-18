@@ -4,138 +4,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-TwpyMehNlfFp1z7buNhoyzujzRkKBCuJSMbJItF8O1xyn4D3Mn+C2F5nHnuKvF5t2" crossorigin="anonymous">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <style>
-            body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+.table {
+    width: 50%;
+    margin-top: 40px;
+    margin-left: 285px;
+}
 
-        .absensi-container {
-            text-align: center;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
+h2 {
+    margin-top: 100px;
+    margin-left: 285px;
+}
 
-        button {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+form {
+    width: 50%;
+    margin-left: 285px;
+}
 
-        button:hover {
-            background-color: #0056b3;
-        }
+.isi {
+    margin-left: 30px;
+}
 
-        p {
-            font-size: 24px;
-            color: #333;
-            margin: 10px 0;
-        }
 
-        .result {
-            font-size: 18px;
-            color: #28a745;
-        }
+@media (max-width: 768px) {
+    form {
+        margin-left: 10%;
+    }
 
+    h2 {
+        margin-left: 10%;
+    }
+
+    .table {
+        margin-left: 10%;
+        margin-top: 10px;
+    }
+}
 </style>
+
 <body>
-    <?php $this->load->view('component/sidebar_admin'); ?>
-    <div class="w-75 m-4">
-        <div class="container w-75">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5>Rekap Bulanan</h5>
-                    <a href="<?= base_url('admin/export_admin'); ?>" class="btn btn-success"><i class="fa-solid fa-folder"></i>
-                    </a>
-                </div>
-                </div>
-                <div class="card-body">
-                    <form action="<?= base_url('admin/rekap_bulanan'); ?>" method="get">
-                        <div class="d-flex justify-content-between">
-                            <select class="form-control" id="bulan" name="bulan">
-                                <option>Pilih Bulan</option>
-                                <option value="1">Januari</option>
-                                <option value="2">Februari</option>
-                                <option value="3">Maret</option>
-                                <option value="4">April</option>
-                                <option value="5">Mei</option>
-                                <option value="6">Juni</option>
-                                <option value="7">Juli</option>
-                                <option value="8">Agustus</option>
-                                <option value="9">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary">Filter</button>
-                        </div>
-                    </form>
-                    <br>
-                    <hr>
-                    <br>
-                    <div class="table-responsive">
-                        <?php if (empty($rekap_harian)): ?>
-                        <h5 class="text-center">Tidak ada data dibulan ini.</h5>
-                        <p class="text-center">Silahkan pilih Bulan lain.</p>
-                        <?php else: ?>
-                        <?php foreach ($rekap_bulanan as $data): ?>
-                        <table class="table" data-month="<?= $data['bulan'] ?>">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal</th>
-                                    <th>Kegiatan</th>
-                                    <th>Masuk</th>
-                                    <th>Pulang</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $data_found = false; ?>
-                                <?php foreach ($rekap_harian as $rekap_harian): ?>
-                                <?php if (tanggal('n', strtotime($rekap_harian['tanggal'])) == $data['bulan']): ?>
-                                <?php $data_found = true; ?>
-                                <tr>
-                                    <td><?= $rekap_harian['id']; ?></td>
-                                    <td><?= $rekap_harian['tanggal']; ?></td>
-                                    <td><?= $rekap_harian['kegiatan']; ?></td>
-                                    <td><?= $rekap_harian['jam_masuk']; ?></td>
-                                    <td><?= $rekap_harian['jam_pulang']; ?></td>
-                                    <td><?= $rekap_harian['status']; ?></td>
-                                </tr>
-                                <?php endif; ?>
-                                <?php endforeach; ?>
-                                <?php if (!$data_found): ?>
-                                <tr>
-                                    <td colspan="7">Tidak ada data untuk bulan ini.</td>
-                                </tr>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
-                        <?php endforeach; ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
+
+    <h2>Rekap Bulanan</h2>
+    <form action="<?= base_url('admin/rekap_bulanan') ?>" method="post">
+        <div class="form-group">
+            <select class="form-control" id="bulan" name="bulan">
+                <option>Pilih Bulan</option>
+                <option value="01">Januari</option>
+                <option value="02">Februari</option>
+                <option value="03">Maret</option>
+                <option value="04">April</option>
+                <option value="05">Mei</option>
+                <option value="06">Juni</option>
+                <option value="07">Juli</option>
+                <option value="08">Agustus</option>
+                <option value="09">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+            </select>
         </div>
-    </div>
+        <button type="submit" class="btn btn-success mt-3">Pilih</button>
+        <a href="<?php echo base_url(
+            'admin/export_rekap_bulanan'
+        ); ?>" class="btn btn-primary mt-3"><i class="fa-solid fa-file-export"></i></a>
+    </form>
+
+    <table class="table table-responsive table-striped table-hover">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Kegiatan</th>
+                <th>Tanggal</th>
+                <th>Jam masuk</th>
+                <th>Jam Pulang</th>
+                <th>Keterangan</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <?php if (!empty($absen)): ?>
+            <?php
+            $no = 0;
+            foreach ($absen as $row):
+                $no++; ?>
+            <tr>
+                <td><?php echo $no; ?></td>
+                <td><?php echo $row->kegiatan; ?></td>
+                <td><?php echo $row->tanggal; ?></td>
+                <td><?php echo $row->jam_masuk; ?></td>
+                <td><?php echo $row->jam_pulang; ?></td>
+                <td><?php echo $row->keterangan_izin; ?></td>
+                <td><?php echo $row->status; ?></td>
+            </tr>
+            <?php
+            endforeach;
+            ?>
+            <?php else: ?>
+            <tr>
+                <td colspan="7">Data tidak ada yang ditemukan </td>
+            </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    </tr>
+    </tbody>
+    </table>
 </body>
 
 </html>

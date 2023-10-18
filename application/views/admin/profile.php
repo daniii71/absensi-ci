@@ -71,7 +71,7 @@
                             <div class="card-body text-center">
                                 <img class="img-account-profile rounded-circle mb-2"
                                     src="<?php echo base_url('assets/images/user/' .$user->image) ?>" alt="">
-                                <div class="small font-italic text-muted">Berbentuk jpg/jpeg/png.</div>
+                                <div class="small font-italic text-muted"></div>
                                 <p class="small font-italic text-muted mb-4">Disarankan foto</p>
                                 <form action="<?php echo base_url('admin/edit_foto'); ?>" method="post"
                                     enctype="multipart/form-data">

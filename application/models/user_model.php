@@ -195,6 +195,40 @@ class user_model extends CI_Model
         return $this->db->affected_rows();
     }
 
+    // cek absen
+    public function cek_absen($id_karyawan, $tanggal) {
+        $this->db->where('id_karyawan', $id_karyawan);
+        $this->db->where('tanggal', $tanggal);
+        $query = $this->db->get('absensi');
+    
+        if ($query->num_rows() > 0) {
+            return true; // Jika sudah ada entri absen untuk karyawan dan tanggal tertentu
+        } else {
+            return false; // Jika belum ada entri absen untuk karyawan dan tanggal tertentu
+        }
+    }
+
+    // cek izin
+
+    public function cek_izin($id_karyawan, $tanggal) {
+        $this->db->where('id_karyawan', $id_karyawan);
+        $this->db->where('tanggal', $tanggal);
+        $this->db->where('status', 'true'); // Hanya mencari entri dengan status izin
+        $query = $this->db->get('absensi');
+
+        if ($query->num_rows() > 0) {
+            return true; // Jika sudah ada entri izin untuk karyawan dan tanggal tertentu
+        } else {
+            return false; // Jika belum ada entri izin untuk karyawan dan tanggal tertentu
+        }
+    }
+
+    public function tambah_data($table, $data)
+    {
+        $data = $this->db->insert($table, $data);
+        return $this->db->insert_id();
+
+    }
 }
 
 ?>

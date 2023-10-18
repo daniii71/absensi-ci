@@ -59,9 +59,9 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="card-title">Ubah Absensi</h1>
+                        <h1 class="card-title">Ubah Absen</h1>
                         <?php foreach($absensi as $absen): ?>
-                    <form class="row" action="<?php echo base_url('karyawan/aksi_update_absen'); ?>"
+                    <form class="row" action="<?php echo base_url('employee/update'); ?>"
                         enctype="multipart/form-data" method="post">
                         <input type="hidden" name="id" value="<?php echo $absen->id ?>">
                         <div class="mb-3 col-12">
