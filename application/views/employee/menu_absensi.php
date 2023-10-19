@@ -9,10 +9,55 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.2.7/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="path/to/your/custom.css">
     <style>
-    .absensi-container {
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    .dashboard {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 50px;
+        transform: translateY(-20px);
+        transition: transform 0.5s;
+    }
+
+    .card {
+        width: 10px;
+        padding: 15px;
+        text-align: center;
+        border: 10px solid #ccc;
+        /* Mengubah ketebalan garis disini */
         background-color: #f9f9f9;
-        padding: 20px;
-        border-radius: 5px;
+        border-radius: 10px;
+        margin: 20px;
+        transition: transform 0.3s;
+    }
+
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .table {
+        margin-top: 5px;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    p {
+        font-size: 5px;
+        color: #007BFF;
+        margin: 5px 0;
     }
     </style>
 </head>

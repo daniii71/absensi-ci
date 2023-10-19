@@ -75,7 +75,7 @@ class Employee extends CI_Controller
             }
         }
 
-
+		// untuk function update
         public function update_absen($id)
 	{
 		$data['absensi']=$this->user_model->get_by_id('absensi', 'id', $id)->result();
@@ -94,7 +94,7 @@ class Employee extends CI_Controller
                 if($eksekusi)
                 {
                     $this->session->set_flashdata('berhasil_update_absen', 'Berhasil mengubah kegiatan');
-                    redirect(base_url('employee/update'));
+                    redirect(base_url('employee/absensi'));
                 }
                 else
                 {
@@ -165,13 +165,14 @@ class Employee extends CI_Controller
     redirect(base_url('employee/absensi'));
 }
 
-    // funtion unruk profile 
-    public function profile()
+    // function unruk profile 
+	public function profile()
 	{
 		$data['akun'] = $this->user_model->get_by_id('user', 'id', $this->session->userdata('id'))->result();
 		$this->load->view('employee/profile', $data);
 	}
 
+	// edit profile
     public function edit_profile() {
 		$config['upload_path'] = './assets/images/user/'; // Lokasi penyimpanan gambar di server
 		$config['allowed_types'] = 'jpg|jpeg|png'; // Tipe file yang diizinkan
@@ -210,7 +211,7 @@ class Employee extends CI_Controller
     public function edit_foto() {
 		$config['upload_path'] = './assets/images/user/'; // Lokasi penyimpanan gambar di server
 		$config['allowed_types'] = 'jpg|jpeg|png'; // Tipe file yang diizinkan
-		$config['max_size'] = 5120; // Maksimum ukuran file (dalam KB)
+		$config['max_size'] = 5120; 
 	
 		$this->load->library('upload', $config);
 	
@@ -219,8 +220,8 @@ class Employee extends CI_Controller
 			$file_name = $upload_data['file_name'];
 	
 			// Update nama file gambar baru ke dalam database untuk user yang sesuai
-			$user_id = $this->session->userdata('id'); // Ganti ini dengan cara Anda menyimpan ID user yang sedang login
-			$current_image = $this->m_model->get_current_image($user_id); // Dapatkan nama gambar saat ini
+			$user_id = $this->session->userdata('id'); 
+			$current_image = $this->m_model->get_current_image($user_id); 
 	
 			if ($current_image !== 'User.png') {
 				// Hapus gambar saat ini jika bukan 'User.png'

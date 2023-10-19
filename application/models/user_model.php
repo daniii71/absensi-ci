@@ -40,6 +40,8 @@ class user_model extends CI_Model
 
         return $query->row();
     }
+
+    // untuk get user by id email 
     public function getUserByEmail($email)
     {
         $this->db->select('*');
@@ -75,6 +77,7 @@ class user_model extends CI_Model
         $this->db->delete('User');
     }
 
+    // untuk update foto
     public function updateUserFoto($user_id, $foto)
     {
         $data = ['foto' => $foto];
@@ -82,19 +85,20 @@ class user_model extends CI_Model
         $this->db->update('User', $data);
     }
 
+    // untuk nge get data 
     function get_data($table){
         return $this->db->get($table);
     }
 
+    // untuk get by idb tabel
     public function get_by_id($table, $id_column, $id) {
         $data = $this->db->where($id_column, $id)->get($table);
         return $data;
     }
 
+    // untuk add absen
     public function addAbsensi($data) {
         // Fungsi ini digunakan untuk menambahkan data absensi.
-        // Anda dapat mengisi tanggal dan jam masuk sesuai dengan waktu saat ini.
-        // Anda juga harus mengatur status ke "belum done".
         $data['tanggal'] = date('Y-m-d');
         $data['jam_masuk'] = date('H:i:s');
         $data['status'] = 'belum done';
@@ -106,6 +110,7 @@ class user_model extends CI_Model
         return $this->db->insert_id();
     }
 
+    // absensi untuk pulang 
     public function setAbsensiPulang($absen_id) {
         // Fungsi ini digunakan untuk mengisi jam pulang dan mengubah status menjadi "pulang".
         $data = array(
@@ -118,6 +123,7 @@ class user_model extends CI_Model
         $this->db->update('absensi', $data);
     }
 
+    // ini untuk add izinya 
     public function addIzin($data) {
         // Fungsi ini digunakan untuk menambahkan izin.
         // Anda dapat mengisi tanggal saat ini sebagai tanggal izin.
@@ -144,23 +150,12 @@ class user_model extends CI_Model
         $this->db->delete('absensi');
     }    
 
+    // untuk update absensi
     public function updateAbsensi($absen_id, $data) {
         // Perbarui data absensi berdasarkan $absen_id
         $this->db->where('id', $absen_id);
         $this->db->update('absensi', $data);
     }
-
-    public function batalPulang($absen_id) {
-        $data = array(
-            'jam_pulang' => null,
-            'status' => 'belum done'
-        );
-    
-        $this->db->where('id', $absen_id);
-        $this->db->update('absensi', $data);
-    }
-
-
 
     // update untuk mengumbah absensi 
     function get_id_employee($id)
@@ -169,6 +164,7 @@ class user_model extends CI_Model
         $this->db->get('user',)->row();
     }
     
+    // untuk get absensi by id 
     public function getAbsensiById($absensi_id) {
         // Assuming your table name is 'absensi', you can use CodeIgniter's query builder
         $this->db->select('*');
@@ -183,19 +179,21 @@ class user_model extends CI_Model
         }
     }
 
+    // untuk update absen
     public function update_absen($absen_id, $data) 
     {
         $this->db->where('id', $absen_id);
         $this->db->update('absensi', $data);
     }   
 
+    // untuk update absen
     public function update_data($table, $data, $where)
     {
        $this->db->update($table, $data, $where);
         return $this->db->affected_rows();
     }
 
-    // cek absen
+    //  utnuk cek absen
     public function cek_absen($id_karyawan, $tanggal) {
         $this->db->where('id_karyawan', $id_karyawan);
         $this->db->where('tanggal', $tanggal);
@@ -208,8 +206,7 @@ class user_model extends CI_Model
         }
     }
 
-    // cek izin
-
+    //utnuk cek izin
     public function cek_izin($id_karyawan, $tanggal) {
         $this->db->where('id_karyawan', $id_karyawan);
         $this->db->where('tanggal', $tanggal);
@@ -223,6 +220,7 @@ class user_model extends CI_Model
         }
     }
 
+    // untuk tambah data baru 
     public function tambah_data($table, $data)
     {
         $data = $this->db->insert($table, $data);

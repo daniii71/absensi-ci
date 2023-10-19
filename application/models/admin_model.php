@@ -11,11 +11,13 @@ class Admin_model extends CI_Model {
         return $this->db->get($table);
     }
 
+    // rekap karyawan
     public function getKaryawan() {
         $query = $this->db->get('absensi');
         return $query->result_array();
     }
 
+    // rekap harian
     public function getRekapHarian($tanggal)
     {
         $this->db->select(
@@ -27,6 +29,7 @@ class Admin_model extends CI_Model {
         return $query->result_array();
     }
     
+    // rekap absensi last 
     public function getAbsensiLast7Days() {
         $this->load->database();
         $end_tanggal = date('Y-m-d');
@@ -41,6 +44,7 @@ class Admin_model extends CI_Model {
         return $query->result_array();
     }
     
+    // rekap bulanan 
     public function getRekapPerBulan($bulan)
         {
             $this->db->select("absensi.*, user.username");
@@ -51,6 +55,7 @@ class Admin_model extends CI_Model {
             return $query->result();
         }
     
+        // untuk get export 
     public function getExportKaryawan() {
         $this->db->select('absensi.id, user.username, absensi.kegiatan, absensi.tanggal, absensi.jam_masuk, absensi.jam_pulang, absensi.status');
         $this->db->from('absensi');
@@ -59,6 +64,8 @@ class Admin_model extends CI_Model {
     
         return $query->result();
     }
+
+    // untuk get rekap hari dan bulan 
     public function getRekapHarianByBulan($bulan) {
         $this->db->select('absensi.*, user.username');
         $this->db->from('absensi');
@@ -68,6 +75,7 @@ class Admin_model extends CI_Model {
         return $query->result_array();
     }
     
+    // untuk export data harian
     public function exportDataRekapHarian($tanggal_awal, $tanggal_akhir) {
         $this->db->select('tanggal, COUNT(*) as total_absensi');
         $this->db->from('absensi');
@@ -78,6 +86,7 @@ class Admin_model extends CI_Model {
         return $query->result_array();
     }
     
+    // export data rekap mingguan
     public function exportDataRekapMingguan() {
         $this->db->select('WEEK(tanggal) as minggu, COUNT(*) as total_absensi');
         $this->db->from('absensi');
@@ -86,6 +95,7 @@ class Admin_model extends CI_Model {
         return $query->result_array();
     }
     
+    // export data rakap bulan 
     public function exportDataRekapBulanan() {
         $this->db->select('MONTH(tanggal) as bulan, COUNT(*) as total_absensi');
         $this->db->from('absensi');

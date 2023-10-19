@@ -60,6 +60,7 @@ class M_model extends CI_Model
             }
         }
 
+        // untuk menambah data pembayaran
 public function getDataPembayaran() {
     $this->db->select('pembayaran.id, pembayaran.jenis_pembayaran, pembayaran.total_pembayaran, siswa.nama_siswa, kelas.tingkat_kelas, kelas.jurusan_kelas');
     $this->db->from('pembayaran');
@@ -70,6 +71,7 @@ public function getDataPembayaran() {
     return $query->result();
 }
 
+// untuk data  siswa
 public function getDataSiswa()
     {
         $this->db->select('siswa.id_siswa, siswa.nama_siswa, siswa.nisn, siswa.gender, kelas.tingkat_kelas, kelas.jurusan_kelas');
@@ -80,6 +82,7 @@ public function getDataSiswa()
         return $query->result();
     }
 
+    // untuk data kelass by id tingkat jurusan 
     public function getKelasByTingkatJurusan($tingkat_kelas, $jurusan_kelas)
     {
         $this->db->select('id');
@@ -110,6 +113,8 @@ public function getDataSiswa()
             return null;
         }
     }
+
+    // untuk register user 
     public function register_user($data) { 
         // Masukkan data ke dalam tabel 'users' dan kembalikan hasilnya 
         return $this->db->insert('user', $data); 
@@ -129,8 +134,8 @@ public function getDataSiswa()
     public function getRekapPerMinggu($start_date, $end_date) {
         $this->db->select('*');
         $this->db->from('absensi');
-        $this->db->where('date >=', $start_date); 
-        $this->db->where('date <=', $end_date);
+        $this->db->where('tanggal >=', $start_date); 
+        $this->db->where('tanggal <=', $end_date);
         $query = $this->db->get();
         return $query->result();
     }
@@ -155,6 +160,7 @@ public function getDataSiswa()
             return $query->result_array();
         }
 
+        // untuk fanction update
         public function update_image($user_id, $new_image) {
             $data = array(
                 'image' => $new_image
@@ -166,6 +172,7 @@ public function getDataSiswa()
             return $this->db->affected_rows(); // Mengembalikan jumlah baris yang diupdate
         }
         
+        // get image 
         public function get_current_image($user_id) {
             $this->db->select('image');
             $this->db->from('user'); // Gantilah 'user_table' dengan nama tabel Anda
@@ -180,6 +187,7 @@ public function getDataSiswa()
             return null; // Kembalikan null jika data tidak ditemukan
         }
 
+        // cek izin
         public function cek_izin($id_karyawan, $tanggal)
         {
             $this->db->where('id_karyawan', $id_karyawan);
@@ -194,6 +202,7 @@ public function getDataSiswa()
             }
         }
     
+        // cek absen 
         public function cek_absen($id_karyawan, $tanggal)
         {
             $this->db->where('id_karyawan', $id_karyawan);
@@ -207,6 +216,7 @@ public function getDataSiswa()
             }
         }
 
+        // get bulanan 
         public function getBulanan($bulan)
     {
         $this->db->select('absensi.*, user.username');
@@ -217,6 +227,7 @@ public function getDataSiswa()
         return $query->result();
     }
 
+    // get data harian
     public function getHarianData($date)
     {
         $this->db->select('absensi.*, user.nama_depan, user.nama_belakang');
@@ -227,6 +238,7 @@ public function getDataSiswa()
         return $query->result();
     }
 
+    // get data bulanan 
     public function get_bulanan($date)
     {
         $this->db->from('absensi');

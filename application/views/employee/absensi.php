@@ -72,6 +72,7 @@
                 <thead class="table-dark">
                     <tr class="text-center">
                         <th>No</th>
+                        <th>Kegiatan</th>
                         <th>Tanggal</th>
                         <th>Jam Masuk</th>
                         <th>Jam Pulang</th>
@@ -84,6 +85,7 @@
                     <?php $no = 0; foreach($absensi as $row): $no++; ?>
                     <tr class="text-center">
                         <td><?php echo $no  ?></td>
+                        <td><?php echo $row->kegiatan ?></td>
                         <td><?php echo $row->tanggal ?></td>
                         <td><?php echo $row->jam_masuk ?></td>
                         <td><?php echo $row->jam_pulang ?></td>
@@ -98,7 +100,8 @@
                                 id="pulangButton_<?php echo $row->id; ?>"><i class="fa-solid fa-people-pulling"></i></a>
                             <h1 class="card-title">
                                 <a href="<?php echo base_url('employee/update_absen/'). $row->id; ?>">
-                                    <i class="fas fa-pencil-alt"></i> <!-- Ganti dengan kelas ikon yang sesuai -->
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    <!-- Ganti dengan kelas ikon yang sesuai -->
                                 </a>
                             </h1>
 

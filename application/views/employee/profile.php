@@ -9,43 +9,51 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/profile.css'); ?>">
 </head>
 <style>
-/* custom.css */
+img {
+    width: 40%;
+}
 
-/* Styling untuk card */
-.card {
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    margin-bottom: 20px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.absensi-container {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Header card */
-.card-header {
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-/* Body card */
-.card-body {
     padding: 20px;
 }
 
-/* Gambar dalam card */
-.card-body img {
-    max-width: 100%;
-    border-radius: 50%;
-}
-
-/* Tombol sekunder */
-.btn-secondary {
-    background-color: #ccc;
-    color: #000;
-}
-
-/* Tombol utama */
-.btn-primary {
-    background-color: #007bff;
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
     color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    font-size: 24px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.result {
+    font-size: 18px;
+    color: #28a745;
 }
 </style>
 

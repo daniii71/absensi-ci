@@ -9,64 +9,65 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style>
-        body {
-            background-image: url('background.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
+    body {
+        background-image: url('background.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
 
-        .card-title {
-            color: #fff;
-        }
+    .card-title {
+        color: #fff;
+    }
 
+    .card {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        width: 40%;
+    }
+
+    .card.left {
+        order: 1;
+    }
+
+    .card.right {
+        order: 2;
+    }
+
+    .logo {
+        max-width: 200px;
+        height: auto;
+        display: block;
+        margin: 0 auto 20px;
+    }
+
+    .custom-button {
+        font-size: 18px;
+        width: 150px;
+    }
+
+    .footer {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        color: #fff;
+    }
+
+    .ddd {
+        text-align: center;
+    }
+
+    /* Menambahkan gaya khusus untuk perangkat seluler */
+    @media (max-width: 768px) {
         .card {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            width: 40%;
-        }
-
-        .card.left {
-            order: 1;
-        }
-
-        .card.right {
-            order: 2;
-        }
-
-        .logo {
-            max-width: 200px;
-            height: auto;
-            display: block;
-            margin: 0 auto 20px; /* Mengurangi margin agar lebih pas di perangkat seluler */
+            padding: 10px;
         }
 
         .custom-button {
-            font-size: 18px;
-            width: 150px;
+            width: 100%;
         }
-
-        .footer {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            color: #fff;
-        }
-
-        .ddd {
-            text-align: center;
-        }
-
-        /* Menambahkan gaya khusus untuk perangkat seluler */
-        @media (max-width: 768px) {
-            .card {
-                padding: 10px; /* Mengurangi padding agar lebih pas di perangkat seluler */
-            }
-
-            .custom-button {
-                width: 100%; /* Tombol memenuhi lebar kartu di perangkat seluler */
-            }
-        }
+    }
     </style>
+
 </head>
 
 <body class="body">
@@ -74,11 +75,10 @@
         <div class="card mt-5 mx-auto">
             <h3 class="card-header mx-auto text-fold text-center" style="color: red;"><strong>LOGIN</strong></h3>
             <div class="card-body">
-                <form action="<?php echo base_url(); ?>auth/aksi_login" method="post">
+                <form action="<?php echo base_url(); ?>auth/aksi_login" method="post" onsubmit="return validateForm();">
                     <div class="mb-3">
                         <label for="email" class="block mb-2 text-sm text-center" style="color: black;">Email</label>
-                        <input type="email" class="form-control" name="email" id="email"
-                            aria-describedby="emailHelp">
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
                     </div>
 
                     <div class="mb-3">
@@ -87,7 +87,7 @@
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">
                         <button type="submit" class="btn btn-primary custom-button">Login</button>
-                    </div> 
+                    </div>
                 </form>
             </div>
             <div class="card-footer text-center">
@@ -95,6 +95,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+    function validateForm() {
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        if (emailInput.value === '' || passwordInput.value === '') {
+            alert('Email and password must be filled out');
+            return false; // Form submission will be prevented
+        }
+
+        // If the form is valid, it will be submitted
+        return true;
+    }
+    </script>
+
 </body>
 
 </html>

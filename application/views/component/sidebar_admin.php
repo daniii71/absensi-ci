@@ -492,7 +492,6 @@
                 </a>
             </header>
             <nav class="dashboard-nav-list">
-                <br>
                 <a href="<?= base_url('admin'); ?>" class="dashboard-nav-item">
                     <i class="fa-solid fa-gauge"></i>index
                 </a>

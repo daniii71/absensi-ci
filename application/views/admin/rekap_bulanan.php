@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>REKAP BULANAN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -70,10 +70,10 @@ form {
                 <option value="12">Desember</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-success mt-3">Pilih</button>
+        <button type="submit" class="btn btn-success mt-3"><i class="fa-solid fa-filter"></i></button>
         <a href="<?php echo base_url(
             'admin/export_rekap_bulanan'
-        ); ?>" class="btn btn-primary mt-3"><i class="fa-solid fa-file-export"></i></a>
+        ); ?>" class="btn btn-primary mt-3"><i class="fa-solid fa-file-arrow-down"></i></a>
     </form>
 
     <table class="table table-responsive table-striped table-hover">
