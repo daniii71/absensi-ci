@@ -116,27 +116,40 @@ p {
                                     </div>
                                     <div class="row gx-3 mb-3">
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="password">Password Baru</label>
+                                            <label class="small mb-1" for="password">Password lama</label>
                                             <div class="input-group">
                                                 <input class="form-control" id="password" type="password"
-                                                    placeholder="Masukan password baru" name="password_baru">
+                                                    placeholder="Password lama" name="password_lama">
                                                 <span class="input-group-text" onclick="togglePassword('password')"><i
                                                         id="icon-password" class="fas fa-eye"></i></span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label class="small mb-1" for="password">Konfirmasi Password</label>
-                                            <div class="input-group">
-                                                <input class="form-control" id="konfirmasi_password" type="password"
-                                                    placeholder="Konfirmasi password" name="konfirmasi_password">
-                                                <span class="input-group-text"
-                                                    onclick="togglePassword('konfirmasi_password')"><i
-                                                        id="icon-konfirmasi" class="fas fa-eye"></i></span>
+                                        <br>
+                                        <div class="row gx-3 mb-3">
+                                            <div class="col-md-6">
+                                                <label class="small mb-1" for="password">Password Baru</label>
+                                                <div class="input-group">
+                                                    <input class="form-control" id="password" type="password"
+                                                        placeholder="Password baru" name="password_baru">
+                                                    <span class="input-group-text"
+                                                        onclick="togglePassword('password')"><i id="icon-password"
+                                                            class="fas fa-eye"></i></span>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="col-md-6">
+                                                <label class="small mb-1" for="password">Konfirmasi Password</label>
+                                                <div class="input-group">
+                                                    <input class="form-control" id="konfirmasi_password" type="password"
+                                                        placeholder="Konfirmasi password" name="konfirmasi_password">
+                                                    <span class="input-group-text"
+                                                        onclick="togglePassword('konfirmasi_password')"><i
+                                                            id="icon-konfirmasi" class="fas fa-eye"></i></span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <button class="btn btn-primary" type="submit">Simpan </button>
+                                        <button class="btn btn-primary" type="submit">Simpan </button>
                                 </form>
                             </div>
                         </div>

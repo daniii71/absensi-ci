@@ -35,8 +35,8 @@
         border: 35px solid #ccc;
         /* Mengubah ketebalan garis disini */
         background-color: #f9f9f9;
-        border-radius: 70px;
-        margin: 50px;
+        border-radius: 20px;
+        margin: 25px;
         transition: transform 0.3s;
     }
 
@@ -46,7 +46,7 @@
     }
 
     .table {
-        margin-top: 300px;
+        margin-top: 100px;
     }
 
     h2 {
@@ -54,9 +54,9 @@
     }
 
     p {
-        font-size: 35px;
+        font-size: 25px;
         color: #007BFF;
-        margin: 50px 0;
+        margin: 25px 0;
     }
     </style>
 </head>
@@ -68,21 +68,21 @@
             <div class="col-md-4">
                 <div class="card">
                     <p id="jumlahMasuk">6</p>
-                    <i class="fa-solid fa-user fa-3x"></i>
+                    <i class="fa-solid fa-user "></i>
                     Jumlah Masuk
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <p id="jumlahIzin">5</p>
-                    <i class="fas fa-calendar-days fa-3x"></i>
+                    <i class="fas fa-calendar-days"></i>
                     Jumlah Izin
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <p id="jumlahTotal">0</p>
-                    <i class="fas fa-calculator fa-3x"></i>
+                    <i class="fas fa-calculator"></i>
                     Total
                 </div>
             </div>

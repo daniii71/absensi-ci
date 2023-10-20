@@ -58,7 +58,7 @@ form {
         <button type="submit" class="btn btn-success my-2"><i class="fa-solid fa-filter"></i></button>
         <a class="exp btn btn-primary mb-2" href="<?= base_url(
             'admin/export_harian'
-        ) ?>"><i class="fa-solid fa-file-export"></i></a>
+        ) ?>"><i class="fa-solid fa-file-arrow-down"></i></i></a>
     </form>
     <table class="table">
         <thead>

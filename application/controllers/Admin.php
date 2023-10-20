@@ -719,7 +719,7 @@ class Admin extends CI_Controller {
             $sheet->setCellValue('A' . $numrow, $data->id);
             $sheet->setCellValue('B' . $numrow, $data->username);
             $sheet->setCellValue('C' . $numrow, $data->kegiatan);
-            $sheet->setCellValue('D' . $numrow, $data->tanggal);
+            $sheet->setCellValue('D' . $numrow, $data->tanggal); 
             $sheet->setCellValue('E' . $numrow, $data->jam_masuk);
             $sheet->setCellValue('F' . $numrow, $data->jam_pulang);
             $sheet->setCellValue('G' . $numrow, $data->status);

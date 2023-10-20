@@ -71,14 +71,8 @@ p {
                     <form action="<?= base_url('admin/rekap_mingguan'); ?>" method="post" class="row g-3">
                         <div class="col-md-4">
                             <div class="input-group">
-                                <span class="input-group-text">Tanggal awal</span>
+                                <span class="input-group-text">Tanggal Akhir</span>
                                 <input type="date" class="form-control" id="start_date" name="start_date">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-group">
-                                <span class="input-group-text">Tanggal awal</span>
-                                <input type="date" class="form-control" id="end_date" name="end_date">
                             </div>
                         </div>
                         <a href="<?= base_url('admin/export_admin'); ?>" class="btn btn-success"><i
