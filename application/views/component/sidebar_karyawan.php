@@ -65,32 +65,30 @@
             <li><a href=""><i class="fa-solid fa-anchor-lock"></i>
                     Dashboard Karyawan</a></li>
             <br>
-            <li><a href="dashboard"><i class="fa-solid fa-user-tie"></i>
+            <li><a href="dashboard"><i class="fa-solid fa-id-card-clip"></i>
                     Dashboard</a></li>
             <br>
             <li><a href="absensi"><i class="fa-solid fa-id-card-clip"></i>
                     Absensi</a></li>
             <br>
-            <li><a href="menu_absensi"><i class="fa-solid fa-square-caret-down"></i>
+            <li><a href="menu_absensi"><i class="fa-solid fa-id-card-clip"></i>
                     menu Absensi</a></li>
             <br>
-            <li><a href="menu_izin"><i class="fa-solid fa-bed"></i>
+            <li><a href="menu_izin"><i class="fa-solid fa-id-card-clip"></i>
                     menu izin</a></li>
             <br>
-            <li><a href="profile"><i class="fa-solid fa-id-badge"></i>
+            <li><a href="profile"><i class="fa-solid fa-id-card-clip"></i>
                     profile</a></li>
             <br>
             <!-- Tambahkan tautan-tautan lain sesuai kebutuhan -->
             <li><button onclick="confirmLogout()">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    Logout</button></li> <!-- Tambahkan tautan Logout -->
-            <!-- Tambahkan tautan-tautan lain sesuai kebutuhan -->
+                    Logout</button></li>
         </ul>
     </div>
 
     <!-- Konten utama -->
     <div class="content">
-        <!-- Isi konten utama halaman di sini -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

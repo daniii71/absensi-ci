@@ -249,7 +249,7 @@ class Admin extends CI_Controller {
             ->getFont()
             ->setBold(true);
         // set thead
-        $sheet->setCellValue('A3', 'ID');
+        $sheet->setCellValue('A3', 'NO');
         $sheet->setCellValue('B3', 'NAMA KARYAWAN');
         $sheet->setCellValue('C3', 'KEGIATAN');
         $sheet->setCellValue('D3', 'TANGGAL');
@@ -548,7 +548,7 @@ class Admin extends CI_Controller {
                 ->getFont()
                 ->setBold(true);
             // set thead
-            $sheet->setCellValue('A3', 'ID');
+            $sheet->setCellValue('A3', 'NO');
             $sheet->setCellValue('B3', 'NAMA KARYAWAN');
             $sheet->setCellValue('C3', 'KEGIATAN');
             $sheet->setCellValue('D3', 'TANGGAL');
@@ -693,7 +693,7 @@ class Admin extends CI_Controller {
             ->getFont()
             ->setBold(true);
         // set thead
-        $sheet->setCellValue('A3', 'ID');
+        $sheet->setCellValue('A3', 'NO');
         $sheet->setCellValue('B3', 'NAMA KARYAWAN');
         $sheet->setCellValue('C3', 'KEGIATAN');
         $sheet->setCellValue('D3', 'TANGGAL');
@@ -836,7 +836,7 @@ class Admin extends CI_Controller {
             ->getFont()
             ->setBold(true);
 
-        $sheet->setCellValue('A3', 'ID');
+        $sheet->setCellValue('A3', 'NO');
         $sheet->setCellValue('B3', 'KEGIATAN');
         $sheet->setCellValue('C3', 'TANGGAL');
         $sheet->setCellValue('D3', 'JAM MASUK');

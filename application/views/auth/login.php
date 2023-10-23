@@ -1,3 +1,21 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Lakukan validasi di sini, misalnya dengan memeriksa kecocokan email dan password dengan database atau penyimpanan yang sesuai.
+
+    // Contoh validasi sederhana, Anda harus menggantinya dengan validasi yang lebih aman:
+    if ($email === 'contoh@email.com' && $password === 'katasandi') {
+        // Login sukses, arahkan ke halaman selanjutnya
+        header('Location: dashboard.php');
+    } else {
+        // Login gagal, kembalikan ke halaman login dengan pesan kesalahan
+        header('Location: login.php?error=1');
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +28,7 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style>
     body {
-        background-image: url('background.jpg');
+        background-image: url('https://asset.kompas.com/crops/dvKdOLNHcM_EYM_j8G-W3laiZQU=/2x0:800x532/750x500/data/photo/2022/08/23/630482c63af5e.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -35,15 +53,15 @@
     }
 
     .logo {
-        max-width: 200px;
+        max-width: 100px;
         height: auto;
         display: block;
         margin: 0 auto 20px;
     }
 
     .custom-button {
-        font-size: 18px;
-        width: 150px;
+        font-size: 20px;
+        width: 200px;
     }
 
     .footer {
@@ -77,12 +95,11 @@
             <div class="card-body">
                 <form action="<?php echo base_url(); ?>auth/aksi_login" method="post" onsubmit="return validateForm();">
                     <div class="mb-3">
-                        <label for="email" class="block mb-2 text-sm text-center" style="color: black;">Email</label>
+                        <label for="email" class="block mb-2 text-sm text-center" style="color: blue;">Email</label>
                         <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
                     </div>
-
                     <div class="mb-3">
-                        <label for="password" class="text-sm" style="color: black;">Password</label>
+                        <label for="password" class="text-sm" style="color: blue;">Password</label>
                         <input type="password" class="form-control" name="password" id="password" autocomplete="off">
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">
@@ -91,7 +108,7 @@
                 </form>
             </div>
             <div class="card-footer text-center">
-                <p>Don't have an account? <a href="<?php echo base_url(); ?>auth/register">Register here</a></p>
+                <a href="<?php echo base_url(); ?>auth/register">Register here</a>
             </div>
         </div>
     </div>

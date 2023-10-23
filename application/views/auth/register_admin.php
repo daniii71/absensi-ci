@@ -8,25 +8,27 @@
     <link rel="stylesheet" href="https://cdn.tailwindcss.com/2.2.16/tailwind.min.css">
     <style>
     body {
-        background-image: url('your-background-image-url.jpg');
+        background-image: url('https://asset.kompas.com/crops/oUbd-oWgmK9GQitYBij1i8DX-1Y=/0x73:1280x713/750x500/data/photo/2019/07/24/5d37bf7ba9d0f.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
         font-family: Arial, sans-serif;
+        padding: 20px;
     }
 
     .container {
-        max-width: 400px;
+        max-width: 385px;
         margin: 0 auto;
-        padding: 20px;
+        padding: 25px;
         background-color: rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
+        border-radius: 15px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
-    .admin {
+    .karyawan {
         text-align: center;
     }
+
 
     .title {
         text-align: center;
@@ -40,7 +42,7 @@
     .form-group input {
         width: 100%;
         padding: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         border: 1px solid #ccc;
         border-radius: 5px;
     }
@@ -51,12 +53,12 @@
         background-color: #007BFF;
         border: none;
         color: #fff;
-        border-radius: 5px;
+        border-radius: 15px;
         cursor: pointer;
     }
 
     .form-group button:hover {
-        background-color: #0056b3;
+        background-color: #0d6efd;
     }
 
     .message {
@@ -72,6 +74,7 @@
     .register-link:hover {
         text-decoration: underline;
     }
+    </style>
     </style>
 </head>
 
