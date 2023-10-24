@@ -50,7 +50,7 @@ form {
 </style>
 
 <body>
-
+    <?php $this->load->view('component/sidebar_admin'); ?>
     <h2>Rekap Bulanan</h2>
     <form action="<?= base_url('admin/rekap_bulanan') ?>" method="post">
         <div class="form-group">

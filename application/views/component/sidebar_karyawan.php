@@ -82,8 +82,8 @@
             <br>
             <!-- Tambahkan tautan-tautan lain sesuai kebutuhan -->
             <li><button onclick="confirmLogout()">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    Logout</button></li>
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </a>
         </ul>
     </div>
 

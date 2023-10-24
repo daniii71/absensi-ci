@@ -26,6 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha384-###" crossorigin="anonymous">
+
     <style>
     body {
         background-image: url('https://asset.kompas.com/crops/dvKdOLNHcM_EYM_j8G-W3laiZQU=/2x0:800x532/750x500/data/photo/2022/08/23/630482c63af5e.jpg');
@@ -84,6 +87,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             width: 100%;
         }
     }
+
+    /* Gaya untuk ikon mata terbuka */
+    .toggle-password.fa-eye {
+        position: absolute;
+        right: 37px;
+        top: 60%;
+        transform: translateY(-85%);
+        cursor: pointer;
+        color: #007bff;
+        /* Warna ikon mata terbuka */
+    }
+
+    /* Gaya untuk ikon mata tertutup */
+    .toggle-password.fa-eye-slash {
+        position: absolute;
+        right: 37px;
+        top: 60%;
+        transform: translateY(-85%);
+        cursor: pointer;
+        color: #777;
+        /* Warna ikon mata tertutup */
+    }
     </style>
 
 </head>
@@ -95,13 +120,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-body">
                 <form action="<?php echo base_url(); ?>auth/aksi_login" method="post" onsubmit="return validateForm();">
                     <div class="mb-3">
-                        <label for="email" class="block mb-2 text-sm text-center" style="color: blue;">Email</label>
+                        <label for="email" class="block mb-2 text-sm text-center" style="color: black;"><i
+                                class="fa-solid fa-envelope-open-text"></i>
+                            Email</label>
                         <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="text-sm" style="color: blue;">Password</label>
+                        <label for="password" class="text-sm" style="color: black;">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
                         <input type="password" class="form-control" name="password" id="password" autocomplete="off">
+                        <i class="toggle-password fas fa-eye" onclick="togglePassword()"></i>
                     </div>
+
                     <div class="d-grid gap-2 col-6 mx-auto">
                         <button type="submit" class="btn btn-primary custom-button">Login</button>
                     </div>
@@ -127,6 +158,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return true;
     }
     </script>
+
+    <script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const toggleIcon = document.querySelector('.toggle-password');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
+    }
+    </script>
+
 
 </body>
 

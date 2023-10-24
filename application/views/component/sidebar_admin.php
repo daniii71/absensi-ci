@@ -43,6 +43,10 @@
         text-decoration: none;
     }
 
+    .sidebar ul li a:hover {
+        color: #fff;
+    }
+
     .content {
         margin-left: 270px;
         /* Sesuaikan dengan lebar sidebar */
@@ -63,33 +67,39 @@
     <div class="sidebar">
         <nav class="dashboard-nav-list">
             <br>
-            <a href="<?= base_url('admin'); ?>" class="dashboard-nav-item">
-                <i class="fa-solid fa-gauge"></i>index
+            <a href="<?= base_url('admin'); ?>" class="dashboard-nav-item" style="color: white;">
+                <i class="fa-solid fa-gauge"></i>
+                index
             </a>
             <br>
             <br>
-            <a href="<?= base_url('admin/daftar_karyawan'); ?>" class="dashboard-nav-item">
-                <i class="fa-solid fa-briefcase"></i> Karyawan
+            <a href="<?= base_url('admin/daftar_karyawan'); ?>" class="dashboard-nav-item" style="color: white;">
+                <i class="fa-solid fa-briefcase"></i>
+                Karyawan
             </a>
             <br>
             <br>
-            <a href="<?= base_url('admin/rekap_bulanan'); ?>" class="dashboard-nav-item">
-                <i class="fa-solid fa-fax"></i> Rekapan Bulanan
+            <a href="<?= base_url('admin/rekap_bulanan'); ?>" class="dashboard-nav-item" style="color: white;">
+                <i class="fa-solid fa-fax"></i>
+                Rekapan Bulanan
             </a>
             <br>
             <br>
-            <a href="<?= base_url('admin/rekap_harian'); ?>" class="dashboard-nav-item">
-                <i class="fa-solid fa-recycle"></i> Rekapan Harian
+            <a href="<?= base_url('admin/rekap_harian'); ?>" class="dashboard-nav-item" style="color: white;">
+                <i class="fa-solid fa-recycle"></i>
+                Rekapan Harian
             </a>
             <br>
             <br>
-            <a href="<?= base_url('admin/rekap_mingguan'); ?>" class="dashboard-nav-item">
-                <i class="fa-solid fa-book-open-reader"></i> Rekapan Mingguan
+            <a href="<?= base_url('admin/rekap_mingguan'); ?>" class="dashboard-nav-item" style="color: white;">
+                <i class="fa-solid fa-book-open-reader"></i>
+                Rekapan Mingguan
             </a>
             <br>
             <br>
-            <a href="<?= base_url('admin/profile'); ?>" class="dashboard-nav-item">
-                <i class="fa-regular fa-user"></i> Profile
+            <a href="<?= base_url('admin/profile'); ?>" class="dashboard-nav-item" style="color: white;">
+                <i class="fa-regular fa-user"></i>
+                Profile
             </a>
             <br>
             <br>

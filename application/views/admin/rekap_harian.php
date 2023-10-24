@@ -48,6 +48,7 @@ form {
 </style>
 
 <body>
+    <?php $this->load->view('component/sidebar_admin'); ?>
     <h2>Rekap Harian</h2>
 
     <form action="<?= base_url('admin/rekap_harian') ?>" method="get">
@@ -63,7 +64,7 @@ form {
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>NO</th>
                 <th>Nama Karyawan</th>
                 <th>Tanggal</th>
                 <th>Kegiatan</th>

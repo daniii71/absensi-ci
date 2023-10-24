@@ -21,7 +21,7 @@ class Auth extends CI_Controller {
         $query = $this->m_model->getwhere('user', $data);   
         $result = $query->row_array();   
           
-        if (!empty($result) || md5($password) === $result['password']) {   
+        if (!empty($result) && md5($password) === $result['password']) {   
         $data = [   
             'logged_in' => TRUE,   
             'email' => $result['email'],   
@@ -33,7 +33,7 @@ class Auth extends CI_Controller {
         if ($this->session->userdata('role') == 'admin') {   
             redirect(base_url()."admin");   
         }elseif($this->session->userdata('role') == 'karyawan'){ 
-            redirect(base_url()."employee/karyawan") ; 
+            redirect(base_url()."employee/dashboard") ; 
         } else {   
             redirect(base_url()."auth");   
         }   

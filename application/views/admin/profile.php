@@ -129,28 +129,29 @@ p {
                                                         id="icon-password" class="fas fa-eye"></i></span>
                                             </div>
                                         </div>
-                                        <div class="row gx-3 mb-3">
-                                            <div class="col-md-6">
-                                                <label class="small mb-1" for="password">Password Baru</label>
-                                                <div class="input-group">
-                                                    <input class="form-control" id="password" type="password"
-                                                        placeholder="Masukan password baru" name="password_baru">
-                                                    <span class="input-group-text"
-                                                        onclick="togglePassword('password')"><i id="icon-password"
-                                                            class="fas fa-eye"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="small mb-1" for="password">Konfirmasi Password</label>
-                                                <div class="input-group">
-                                                    <input class="form-control" id="konfirmasi_password" type="password"
-                                                        placeholder="Konfirmasi password" name="konfirmasi_password">
-                                                    <span class="input-group-text"
-                                                        onclick="togglePassword('konfirmasi_password')"><i
-                                                            id="icon-konfirmasi" class="fas fa-eye"></i></span>
-                                                </div>
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="password">Password Baru</label>
+                                            <div class="input-group">
+                                                <input class="form-control" id="password_baru" type="password"
+                                                    placeholder="Masukan password baru" name="password_baru">
+                                                <span class="input-group-text"
+                                                    onclick="togglePassword('password_baru')"><i id="icon-password_baru"
+                                                        class="fas fa-eye"></i></span>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="konfirmasi_password">Konfirmasi
+                                                Password</label>
+                                            <div class="input-group">
+                                                <input class="form-control" id="konfirmasi_password" type="password"
+                                                    placeholder="Konfirmasi password" name="konfirmasi_password">
+                                                <span class="input-group-text"
+                                                    onclick="togglePassword('konfirmasi_password')"><i
+                                                        id="icon-konfirmasi_password" class="fas fa-eye"></i></span>
+                                            </div>
+                                        </div>
+
 
                                         <button class="btn btn-primary" type="submit">Simpan </button>
                                 </form>
@@ -162,6 +163,22 @@ p {
             </div>
         </div>
     </div>
+    <script>
+    function togglePassword(inputId) {
+        var x = document.getElementById(inputId);
+        var icon = document.getElementById("icon-" + inputId);
+
+        if (x.type === "password") {
+            x.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            x.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+    </script>
 </body>
 
 </html>

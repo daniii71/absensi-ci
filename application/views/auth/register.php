@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="https://cdn.tailwindcss.com/2.2.16/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha384-###" crossorigin="anonymous">
+
     <style>
     body {
         background-image: url('https://mounture.com/wp-content/uploads/2019/07/Gunung-Slamet.png');
@@ -66,6 +69,11 @@
         color: #fff;
     }
 
+    .message a {
+        color: black;
+        /* Ganti dengan warna yang Anda inginkan */
+    }
+
     .register-link {
         color: #007BFF;
         text-decoration: none;
@@ -73,6 +81,30 @@
 
     .register-link:hover {
         text-decoration: underline;
+    }
+
+    /* ... CSS lainnya ... */
+
+    /* Gaya untuk ikon mata terbuka */
+    .toggle-password.fa-eye {
+        position: absolute;
+        right: 3px;
+        top: 50%;
+        transform: translateY(-80%);
+        cursor: pointer;
+        color: #007BFF;
+        /* Warna ikon mata terbuka */
+    }
+
+    /* Gaya untuk ikon mata tertutup */
+    .toggle-password.fa-eye-slash {
+        position: absolute;
+        right: 3px;
+        top: 50%;
+        transform: translateY(-80%);
+        cursor: pointer;
+        color: #777;
+        /* Warna ikon mata tertutup */
     }
     </style>
 </head>
@@ -86,7 +118,11 @@
                 <input type="email" name="email" id="email" placeholder="Email" />
                 <input type="text" name="nama_depan" id="nama_depan" placeholder="Nama Depan" />
                 <input type="text" name="nama_belakang" id="nama_belakang" placeholder="Nama Belakang" />
-                <input type="password" name="password" id="password" placeholder="Password" />
+                <div style="position: relative;">
+                    <input type="password" name="password" id="password" placeholder="Password" />
+                    <i class="toggle-password fas fa-eye" onclick="togglePassword()"></i>
+                </div>
+                <p style="color: red">password minimal 8</p>
             </div>
             <div class="form-group">
                 <button type="submit">Register</button>
@@ -101,6 +137,23 @@
             </p>
         </form>
     </div>
+    <script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const toggleIcon = document.querySelector('.toggle-password');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
+    }
+    </script>
+
 </body>
 
 </html>
