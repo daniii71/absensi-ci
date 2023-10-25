@@ -122,7 +122,7 @@ p {
                                                     placeholder="Password lama" name="password_lama">
                                                 <span class="input-group-text"
                                                     onclick="togglePassword('password-lama')"><i id="icon-password-lama"
-                                                        class="fas fa-eye"></i></span>
+                                                        class="fas fa-eye-slash"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@ p {
                                                     placeholder="Password baru" name="password_baru">
                                                 <span class="input-group-text"
                                                     onclick="togglePassword('password-baru')"><i id="icon-password-baru"
-                                                        class="fas fa-eye"></i></span>
+                                                        class="fas fa-eye-slash"></i></span>
                                             </div>
                                         </div>
                                         <br>
@@ -146,7 +146,8 @@ p {
                                                     placeholder="Konfirmasi password" name="konfirmasi_password">
                                                 <span class="input-group-text"
                                                     onclick="togglePassword('konfirmasi_password')"><i
-                                                        id="icon-konfirmasi" class="fas fa-eye"></i></span>
+                                                        id="icon-konfirmasi_password"
+                                                        class="fas fa-eye-slash"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -171,12 +172,12 @@ function togglePassword(inputId) {
 
     if (x.type === "password") {
         x.type = "text";
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
-    } else {
-        x.type = "password";
         icon.classList.remove("fa-eye-slash");
         icon.classList.add("fa-eye");
+    } else {
+        x.type = "password";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
     }
 }
 </script>

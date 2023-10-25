@@ -19,6 +19,23 @@
         padding: 0;
     }
 
+    .absensi-container {
+        text-align: center;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
     .dashboard {
         background-color: #fff;
         border-radius: 10px;

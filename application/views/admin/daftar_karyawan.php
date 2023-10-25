@@ -85,6 +85,7 @@ p {
                                     <th scope="col">Jam Masuk</th>
                                     <th scope="col">Jam Pulang</th>
                                     <th scope="col">Keterangan Izin</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,6 +97,11 @@ p {
                                     <td><?php echo isset($row['jam_masuk']) ? $row['jam_masuk'] : '' ?></td>
                                     <td><?php echo isset($row['jam_pulang']) ? $row['jam_pulang'] : '' ?></td>
                                     <td><?php echo isset($row['keterangan_izin']) ? $row['keterangan_izin'] : '' ?></td>
+                                    <td>
+                                        <button class="btn btn-danger" onclick="hapusData(<?php echo $row['id']; ?>)"><i
+                                                class="fa-solid fa-trash-can"></i></button>
+                                    </td>
+
                                 </tr>
                                 <?php endforeach ?>
                             </tbody>
@@ -119,6 +125,26 @@ p {
             XLSX.writeFile(wb, 'absensi_karyawan_' + (index + 1) + '.xlsx');
         });
     });
+    </script>
+    <script>
+    function hapusData(id) {
+        Swal.fire({
+            title: 'Yakin Di Hapus?',
+            text: "Anda tidak dapat mengembalikannya!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#198754',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "<?php echo base_url(
+                    'employee/hapus/'
+                ); ?>" + id;
+            }
+        });
+    }
     </script>
 </body>
 

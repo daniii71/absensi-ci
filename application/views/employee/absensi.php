@@ -105,8 +105,8 @@
                                 </a>
                             </h1>
 
-                            <button class="btn btn-danger" onclick="hapus(<?php echo $row->id; ?>)"><i
-                                    class="fa-solid fa-trash-can"></i></button>
+                            <!-- <button class="btn btn-danger" onclick="hapus(<?php echo $row->id; ?>)"><i
+                                    class="fa-solid fa-trash-can"></i></button> -->
 
                             <?php endif; ?>
                         </td>
@@ -143,7 +143,7 @@
         }
     }
     </script>
-    <script>
+    <!-- <script>
     function hapus(id) {
         Swal.fire({
             title: 'Yakin Di Hapus?',
@@ -162,7 +162,7 @@
             }
         });
     }
-    </script>
+    </script> -->
 </body>
 
 </html>

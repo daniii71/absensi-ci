@@ -34,16 +34,16 @@
         padding: 0;
     }
 
-    .sidebar ul li {
+    .sidebar {
         padding: 10px 15px;
     }
 
-    .sidebar ul li a {
+    .sidebar a {
         color: #fff;
         text-decoration: none;
     }
 
-    .sidebar ul li a:hover {
+    .sidebar a:hover {
         color: #fff;
     }
 
@@ -51,6 +51,10 @@
         margin-left: 270px;
         /* Sesuaikan dengan lebar sidebar */
         padding: 20px;
+    }
+
+    .logout {
+        margin-top: 150%;
     }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -67,46 +71,49 @@
     <div class="sidebar">
         <nav class="dashboard-nav-list">
             <br>
-            <a href="<?= base_url('admin'); ?>" class="dashboard-nav-item" style="color: white;">
+            <a href="<?= base_url('admin'); ?>" class="dashboard-nav-item">
                 <i class="fa-solid fa-gauge"></i>
                 index
             </a>
             <br>
             <br>
-            <a href="<?= base_url('admin/daftar_karyawan'); ?>" class="dashboard-nav-item" style="color: white;">
+            <a href="<?= base_url('admin/daftar_karyawan'); ?>" class="dashboard-nav-item">
                 <i class="fa-solid fa-briefcase"></i>
                 Karyawan
             </a>
             <br>
             <br>
-            <a href="<?= base_url('admin/rekap_bulanan'); ?>" class="dashboard-nav-item" style="color: white;">
+            <a href="<?= base_url('admin/rekap_bulanan'); ?>" class="dashboard-nav-item">
                 <i class="fa-solid fa-fax"></i>
                 Rekapan Bulanan
             </a>
             <br>
             <br>
-            <a href="<?= base_url('admin/rekap_harian'); ?>" class="dashboard-nav-item" style="color: white;">
+            <a href="<?= base_url('admin/rekap_harian'); ?>" class="dashboard-nav-item">
                 <i class="fa-solid fa-recycle"></i>
                 Rekapan Harian
             </a>
             <br>
             <br>
-            <a href="<?= base_url('admin/rekap_mingguan'); ?>" class="dashboard-nav-item" style="color: white;">
+            <a href="<?= base_url('admin/rekap_mingguan'); ?>" class="dashboard-nav-item">
                 <i class="fa-solid fa-book-open-reader"></i>
                 Rekapan Mingguan
             </a>
             <br>
             <br>
-            <a href="<?= base_url('admin/profile'); ?>" class="dashboard-nav-item" style="color: white;">
+            <a href="<?= base_url('admin/profile'); ?>" class="dashboard-nav-item">
                 <i class="fa-regular fa-user"></i>
                 Profile
             </a>
             <br>
             <br>
             <br>
-            <li><button onclick="confirmLogout()">
+            <div class="logout">
+
+                <button onclick="confirmLogout()">
                     <i class="fa-solid fa-right-from-bracket"></i> Logout
                     </a>
+            </div>
         </nav>
     </div>
 
@@ -120,7 +127,7 @@
     <script>
     function confirmLogout() {
         Swal.fire({
-            title: 'Yakin mau LogOut?',
+            title: 'Yakin mau keluar?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

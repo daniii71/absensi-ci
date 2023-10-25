@@ -120,7 +120,7 @@
                 <input type="text" name="nama_belakang" id="nama_belakang" placeholder="Nama Belakang" />
                 <div style="position: relative;">
                     <input type="password" name="password" id="password" placeholder="Password" />
-                    <i class="toggle-password fas fa-eye" onclick="togglePassword()"></i>
+                    <i class="toggle-password fas fa-eye-slash" onclick="togglePassword()"></i>
                 </div>
                 <p style="color: red">password minimal 8</p>
             </div>
@@ -144,12 +144,12 @@
 
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
-            toggleIcon.classList.remove('fa-eye');
-            toggleIcon.classList.add('fa-eye-slash');
-        } else {
-            passwordInput.type = 'password';
             toggleIcon.classList.remove('fa-eye-slash');
             toggleIcon.classList.add('fa-eye');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
         }
     }
     </script>

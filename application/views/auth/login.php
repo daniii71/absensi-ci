@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <i class="fas fa-lock"></i> Password
                         </label>
                         <input type="password" class="form-control" name="password" id="password" autocomplete="off">
-                        <i class="toggle-password fas fa-eye" onclick="togglePassword()"></i>
+                        <i class="toggle-password fas fa-eye-slash" onclick="togglePassword()"></i>
                     </div>
 
                     <div class="d-grid gap-2 col-6 mx-auto">
@@ -166,12 +166,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
-            toggleIcon.classList.remove('fa-eye');
-            toggleIcon.classList.add('fa-eye-slash');
-        } else {
-            passwordInput.type = 'password';
             toggleIcon.classList.remove('fa-eye-slash');
             toggleIcon.classList.add('fa-eye');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
         }
     }
     </script>
