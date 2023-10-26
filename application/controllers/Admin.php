@@ -68,6 +68,16 @@ class Admin extends CI_Controller {
 		$data['absensi'] = $this->user_model->get_data('absensi')->result();
 		$this->load->view('admin/absen', $data);
 	}
+        // ini funtion untuk menghapus
+        public function hapus($id)
+        {
+            $this->m_model->delete('absensi', 'id', $id);
+            $this->session->set_flashdata(
+                'berhasil_menghapus',
+                'Data berhasil dihapus.'
+            );
+            redirect(base_url('admin/daftar_karyawan'));
+        }
 
     // untuk rekap bulanan 
     public function rekap_bulanan()

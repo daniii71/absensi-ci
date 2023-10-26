@@ -1,21 +1,3 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // Lakukan validasi di sini, misalnya dengan memeriksa kecocokan email dan password dengan database atau penyimpanan yang sesuai.
-
-    // Contoh validasi sederhana, Anda harus menggantinya dengan validasi yang lebih aman:
-    if ($email === 'contoh@email.com' && $password === 'katasandi') {
-        // Login sukses, arahkan ke halaman selanjutnya
-        header('Location: dashboard.php');
-    } else {
-        // Login gagal, kembalikan ke halaman login dengan pesan kesalahan
-        header('Location: login.php?error=1');
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -175,6 +157,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     </script>
+
+    <script>
+    function validateForm() {
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword'); // Tambahkan ini
+
+        if (emailInput.value === '' || passwordInput.value === '' || confirmPasswordInput.value === '') {
+            alert('Email, password, and confirm password must be filled out');
+            return false; // Form submission will be prevented
+        }
+
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            alert('Password and confirm password must match');
+            return false; // Form submission will be prevented
+        }
+
+        // If the form is valid, it will be submitted
+        return true;
+    }
+    </script>
+
+
 
 
 </body>

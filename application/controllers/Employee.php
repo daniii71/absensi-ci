@@ -173,8 +173,46 @@ class Employee extends CI_Controller
 	}
 
 	// edit profile
-    public function edit_profile() {
-		$config['upload_path'] = './assets/images/user/'; // Lokasi penyimpanan gambar di server
+    public function edit_profile()
+	{
+		$password_baru = $this->input->post('password_baru');
+		$konfirmasi_password = $this->input->post('konfirmasi_password');
+		$email = $this->input->post('email');
+		$username = $this->input->post('username');
+		$nama_depan = $this->input->post('nama_depan');
+		$nama_belakang = $this->input->post('nama_belakang');
+
+		$data = array(
+			'email' => $email,
+			'username' => $username,
+			'nama_depan' => $nama_depan,
+			'nama_belakang' => $nama_belakang,
+		);
+
+		if (!empty($password_baru)) {
+			if ($password_baru === $konfirmasi_password) {
+				$data['password'] = md5($password_baru);
+				$this->session->set_flashdata('ubah_password', 'Berhasil mengubah password');
+			} else {
+				$this->session->set_flashdata('kesalahan_password', 'Password baru dan Konfirmasi password tidak sama');
+				redirect(base_url('employee/profile'));
+			}
+		}
+
+		$this->session->set_userdata($data);
+		$update_result = $this->m_model->ubah_data('user', $data, array('id' => $this->session->userdata('id')));
+
+		if ($update_result) {
+			$this->session->set_flashdata('update_user', 'Data berhasil diperbarui');
+			redirect(base_url('employee/profile'));
+		} else {
+			$this->session->set_flashdata('gagal_update', 'Gagal memperbarui data');
+			redirect(base_url('employee/profile'));
+		}
+	}
+	
+    public function edit_foto() {
+		$config['upload_path'] = './assets/images/karyawan/'; //'./assets/images/karyawan/'; // Lokasi penyimpanan gambar di server
 		$config['allowed_types'] = 'jpg|jpeg|png'; // Tipe file yang diizinkan
 		$config['max_size'] = 5120; // Maksimum ukuran file (dalam KB)
 	
@@ -190,7 +228,7 @@ class Employee extends CI_Controller
 	
 			if ($current_image !== 'User.png') {
 				// Hapus gambar saat ini jika bukan 'User.png'
-				unlink('./assets/images/user/' . $current_image);
+				unlink('./assets/images/karyawan/' . $current_image);
 			}
 	
 			$this->m_model->update_image($user_id, $file_name); // Gantilah 'm_model' dengan model Anda
@@ -205,74 +243,7 @@ class Employee extends CI_Controller
 			redirect('employee/profile');
 			// Tangani kesalahan unggah gambar
 		}
-    }
-
-	public function edit_foto() {
-		$file_name = '';
-	
-		if (!empty($_FILES['userfile']['name'])) {
-			$config['upload_path'] = './assets/images/user/'; // Lokasi penyimpanan gambar di server
-			$config['allowed_types'] = 'jpg|jpeg|png'; // Tipe file yang diizinkan
-			$config['max_size'] = 5120; // Maksimum ukuran file (dalam KB)
-	
-			$this->load->library('upload', $config);
-	
-			if ($this->upload->do_upload('userfile')) {
-				$upload_data = $this->upload->data();
-				$file_name = $upload_data['file_name'];
-			} else {
-				$error = array('error' => $this->upload->display_errors());
-				$this->session->set_flashdata('error_profile', $error['error']);
-			}
-		}
-	
-		$user_id = $this->session->userdata('id');
-		$current_image = $this->m_model->get_current_image($user_id);
-	
-		if ($file_name !== '' && $current_image !== 'User.png') {
-			unlink('./assets/images/user/' . $current_image);
-		}
-	
-		$this->m_model->update_image($user_id, $file_name);
-	
-		$this->session->set_flashdata('berhasil_ubah_foto', 'Foto berhasil diperbarui.');
-	
-		redirect('employee/profile');
 	}
-	
-    // public function edit_foto() {
-	// 	$config['upload_path'] = FCPATH . 'assets/images/user/'; //'./assets/images/user/'; // Lokasi penyimpanan gambar di server
-	// 	$config['allowed_types'] = 'jpg|jpeg|png'; // Tipe file yang diizinkan
-	// 	$config['max_size'] = 5120; // Maksimum ukuran file (dalam KB)
-	
-	// 	$this->load->library('upload', $config);
-	
-	// 	if ($this->upload->do_upload('userfile')) {
-	// 		$upload_data = $this->upload->data();
-	// 		$file_name = $upload_data['file_name'];
-	
-	// 		// Update nama file gambar baru ke dalam database untuk user yang sesuai
-	// 		$user_id = $this->session->userdata('id'); // Ganti ini dengan cara Anda menyimpan ID user yang sedang login
-	// 		$current_image = $this->m_model->get_current_image($user_id); // Dapatkan nama gambar saat ini
-	
-	// 		if ($current_image !== 'User.png') {
-	// 			// Hapus gambar saat ini jika bukan 'User.png'
-	// 			unlink('./assets/images/user/' . $current_image);
-	// 		}
-	
-	// 		$this->m_model->update_image($user_id, $file_name); // Gantilah 'm_model' dengan model Anda
-	// 		$this->session->set_flashdata('berhasil_ubah_foto', 'Foto berhasil diperbarui.');
-
-	
-	// 		// Redirect atau tampilkan pesan keberhasilan
-	// 		redirect('employee/profile'); // Gantilah dengan halaman yang sesuai
-	// 	} else {
-	// 		$error = array('error' => $this->upload->display_errors());
-	// 		$this->session->set_flashdata('error_profile', $error['error']);
-	// 		redirect('employee/profile');
-	// 		// Tangani kesalahan unggah gambar
-	// 	}
-	// }
 }
 
 ?>

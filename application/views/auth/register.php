@@ -114,12 +114,12 @@
         <h1 class="title">REGISTER KARYAWAN</h1>
         <form action="<?php echo base_url(); ?>Auth/aksi_register" method="post">
             <div class="form-group">
-                <input type="text" name="username" id="username" placeholder="Username" />
+                <input type="text" name="username" id="username" placeholder="Username" required />
                 <input type="email" name="email" id="email" placeholder="Email" />
-                <input type="text" name="nama_depan" id="nama_depan" placeholder="Nama Depan" />
-                <input type="text" name="nama_belakang" id="nama_belakang" placeholder="Nama Belakang" />
+                <input type="text" name="nama_depan" id="nama_depan" placeholder="Nama Depan" required />
+                <input type="text" name="nama_belakang" id="nama_belakang" placeholder="Nama Belakang" required />
                 <div style="position: relative;">
-                    <input type="password" name="password" id="password" placeholder="Password" />
+                    <input type="password" name="password" id="password" placeholder="Password" required />
                     <i class="toggle-password fas fa-eye-slash" onclick="togglePassword()"></i>
                 </div>
                 <p style="color: red">password minimal 8</p>

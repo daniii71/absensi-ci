@@ -30,8 +30,8 @@ button {
 }
 
 .table {
-    width: 50%;
-    margin-top: 40px;
+    width: 20%;
+    margin-top: 20px;
     margin-left: 285px;
 }
 
